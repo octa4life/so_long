@@ -3,7 +3,7 @@ CC		= gcc
 CFLAGS	= -Wall -Wextra -Werror
 RM		= rm -f
 
-SRC_DIR	= srcs
+SRC_DIR	= src
 OBJ_DIR	= objs
 INC_DIR	= includes
 
@@ -13,10 +13,8 @@ MLX = $(MLX_DIR)/libmlx.a
 MLX_FLAGS = -L$(MLX_DIR) -lmlx -lX11 -lXext
 
 # Sources files
-_SRCS = main.c game.c verif.c verif2.c utils.c insert.c flood_fill.c game_utils.c free.c move.c
-GNL_SRCS = get_next_line.c get_next_line_utils.c
-SRCS = $(addprefix $(SRC_DIR)/, $(_SRCS)) \
-       $(addprefix $(SRC_DIR)/gnl/, $(GNL_SRCS))
+_SRCS = main.c parsing.c parsing_utils.c
+SRCS = $(addprefix $(SRC_DIR)/, $(_SRCS))
 
 _OBJS = $(_SRCS:.c=.o) $(GNL_SRCS:.c=.o)
 OBJS = $(addprefix $(OBJ_DIR)/, $(_OBJS))

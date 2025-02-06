@@ -6,7 +6,7 @@
 /*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:42:47 by obellil-          #+#    #+#             */
-/*   Updated: 2025/02/05 15:15:01 by obellil-         ###   ########.fr       */
+/*   Updated: 2025/02/06 10:49:53 by obellil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,12 @@
 # define SO_LONG_H
 
 # include <stdlib.h>
+# include <stdlib.h>
 # include <unistd.h>
+# include <stddef.h>
 # include <stdio.h>
 # include <string.h>
+# include <fcntl.h>
 # include <X11/keysym.h>
 # include <X11/X.h>
 # include <fcntl.h>
@@ -26,24 +29,24 @@
 typedef struct img_s
 {
 	void	*img_floor;
-	void	*img_P;
-	void	*img_E;
+	void	*img_p;
+	void	*img_e;
 	void	*img_wall;
-	void	*img_C;
+	void	*img_c;
 	int		height;
 	int		width;
-	char	*P;
+	char	*p;
 	char	*floor;
 	char	*wall;
-	char	*C;
-	char	*E;
+	char	*c;
+	char	*e;
 }				t_img;
 
 typedef struct cnt_s
 {
-	char	E;
-	char	C;
-	char	P;
+	char	e;
+	char	c;
+	char	p;
 	char	wall;
 	char	space;
 	int		count_p;
@@ -73,6 +76,7 @@ typedef struct data_s
 
 // Parsing
 void	print_error(void);
-int		check_if_close(char *map_line, char wall, t_data *data);
+int		main();
+int		readfd(char **argv);
 
 #endif
