@@ -16,7 +16,7 @@ MLX_FLAGS = -L$(MLX_DIR) -lmlx -lX11 -lXext
 _SRCS = main.c parsing.c parsing_utils.c
 SRCS = $(addprefix $(SRC_DIR)/, $(_SRCS))
 
-_OBJS = $(_SRCS:.c=.o) $(GNL_SRCS:.c=.o)
+_OBJS = $(_SRCS:.c=.o)
 OBJS = $(addprefix $(OBJ_DIR)/, $(_OBJS))
 
 # Path to libft library
@@ -25,8 +25,8 @@ LIBFT = $(LIBFT_DIR)/libft.a
 
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(MLX) $(OBJS)
-	$(CC) $(CFLAGS) -o $@ $^ -L$(LIBFT_DIR) -lft $(MLX_FLAGS)
+$(NAME): $(OBJS) $(LIBFT) $(MLX)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MLX) $(MLX_FLAGS) -o $@
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(OBJ_DIR)
