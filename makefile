@@ -1,6 +1,6 @@
 NAME	= so_long
 CC		= gcc
-CFLAGS	= -Wall -Wextra -Werror
+CFLAGS	= -Wall -Wextra -Werror -fPIC
 RM		= rm -f
 
 SRC_DIR	= src

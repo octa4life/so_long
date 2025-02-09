@@ -6,7 +6,7 @@
 /*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 10:55:15 by obellil-          #+#    #+#             */
-/*   Updated: 2024/11/20 16:39:17 by obellil-         ###   ########.fr       */
+/*   Updated: 2025/02/06 13:04:33 by obellil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,6 @@ char	*get_next_line(int fd);
 int		ft_gnlchr(char *stocker);
 char	*ft_gnljoin(char *nl, char *st);
 char	*ft_gnlclean(char *stocker);
-size_t	ft_strlen(char *str);
+size_t	ft_strleen(char *str);
 
 #endif

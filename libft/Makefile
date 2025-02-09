@@ -47,7 +47,7 @@ SRCS=	ft_atoi.c \
 OBJS=${SRCS:.c=.o}
 
 CC=cc
-CFLAGS= -Wall -Werror -Wextra
+CFLAGS= -Wall -Werror -Wextra -fPIC
 
 %.o:	%.c
 		${CC} $(CFLAGS) -c $< -o $@

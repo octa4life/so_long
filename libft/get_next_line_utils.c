@@ -6,7 +6,7 @@
 /*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 15:10:09 by obellil-          #+#    #+#             */
-/*   Updated: 2024/11/20 15:10:41 by obellil-         ###   ########.fr       */
+/*   Updated: 2025/02/06 13:04:54 by obellil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ char	*ft_gnlclean(char *stocker)
 	return (stocker);
 }
 
-size_t	ft_strlen(char *str)
+size_t	ft_strleen(char *str)
 {
 	size_t	i;
 
