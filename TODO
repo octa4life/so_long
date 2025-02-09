@@ -1,9 +1,0 @@
-
-Todo:
-  ✔  lire le fichier @done(25-02-09 20:24)
-  ✔ check si la map est rectangle @done(25-02-05 16:22)
-  ✔ check si des murs entourent la map @done(25-02-05 15:33)
-  ☐ check si i y a E C P 0 1
-  ✔ check si ca commence par 1 @done(25-02-09 20:24)
-  ☐ check si il y a un chemin valide pour aller a la sortie
-  ✔ check si la line est pleine et presente @done(25-02-05 15:34)
