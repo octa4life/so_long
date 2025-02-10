@@ -6,7 +6,7 @@
 /*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 19:54:25 by obellil-          #+#    #+#             */
-/*   Updated: 2025/02/10 15:03:30 by obellil-         ###   ########.fr       */
+/*   Updated: 2025/02/10 17:05:30 by obellil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,10 @@ int	openfd(char **argv)
 	{
 		if (ft_strnstr(argv[1] ,".ber", 15))
 		{
-			fd = open(argv[1],O_RDONLY);
+			fd = open(argv[1], O_RDONLY);
+			printf("%d", fd);
 			if (fd < 0)
-				return (0);
+				return (1);
 		}
 		else
 		{
@@ -31,7 +32,7 @@ int	openfd(char **argv)
 			return (0);
 		}
 	}
-	return (0);
+	return (fd);
 }
 
 int	gnlfd(char **argv)
@@ -59,7 +60,7 @@ int	gnlfd(char **argv)
 		}
 		close(fd);
 	}
-	return (count);
+	return (fd);
 }
 
 int	check_close(char **argv)
@@ -81,15 +82,14 @@ int	check_close(char **argv)
 			count++;
 			countline ++;
 			start = count -1;
-			while (countline == '\n' && start[line] == '0' && countline == '0')
+			if (countline == '\n' && start[line] == '0' && countline == '0')
 				return (0);
-			while (countline == '\n' && start[line] == '1' && countline == '0')
-				return (1);
-			free(line);
+			if (countline == '\n' && start[line] == '1' && countline == '0')
+				return (free(line), 1);
 		}
 		close(fd);
 	}
-	return count;
+	return (count);
 }
 
 int	check_obj(char **argv)
