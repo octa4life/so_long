@@ -6,7 +6,7 @@
 /*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:42:47 by obellil-          #+#    #+#             */
-/*   Updated: 2025/02/09 19:02:37 by obellil-         ###   ########.fr       */
+/*   Updated: 2025/02/10 14:00:26 by obellil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,11 @@ typedef struct data_s
 
 // Parsing
 void	print_error(void);
-int		main(void);
+int		main(int argc, char **argv);
 int		openfd(char **argv);
 int		gnlfd(char **argv);
-
+int		check_close(char **argv);
+int		check_obj(char **argv);
+int		floodfill(char **tab, t_pos y, t_pos x);
+void	ff(char **tab, int x, int y);
 #endif

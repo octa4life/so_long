@@ -6,7 +6,7 @@
 /*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 15:10:09 by obellil-          #+#    #+#             */
-/*   Updated: 2024/11/20 17:33:05 by obellil-         ###   ########.fr       */
+/*   Updated: 2025/02/10 13:49:18 by obellil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	*ft_gnljoin(char *nl, char *st)
 			return (NULL);
 		nl[0] = '\0';
 	}
-	result = malloc((ft_strlen(nl) + ft_strlen(st) + 1) * sizeof(char));
+	result = malloc((ft_strleen(nl) + ft_strleen(st) + 1) * sizeof(char));
 	if (!result)
 		return (NULL);
 	i = -1;
@@ -78,7 +78,7 @@ char	*ft_gnlclean(char *stocker)
 	return (stocker);
 }
 
-size_t	ft_strlen(char *str)
+size_t	ft_strleen(char *str)
 {
 	size_t	i;
 

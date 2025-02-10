@@ -6,7 +6,7 @@
 /*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 10:04:05 by obellil-          #+#    #+#             */
-/*   Updated: 2025/02/06 13:16:43 by obellil-         ###   ########.fr       */
+/*   Updated: 2025/02/10 13:47:50 by obellil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,8 @@ void		ft_hexadecimal(unsigned int x, int *length, char x_or_x);
 void		ft_unsigned_int(unsigned int u, int *length);
 int			ft_pointer(size_t pointer, int *length);
 int			ft_printf(const char *string, ...);
-
+int			ft_gnlchr(char *stocker);
+char		*ft_gnljoin(char *nl, char *st);
+char		*ft_gnlclean(char *stocker);
+size_t		ft_strleen(char *str);
 #endif

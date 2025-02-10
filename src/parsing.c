@@ -6,7 +6,7 @@
 /*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 19:54:25 by obellil-          #+#    #+#             */
-/*   Updated: 2025/02/09 21:11:12 by obellil-         ###   ########.fr       */
+/*   Updated: 2025/02/10 15:03:30 by obellil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int	openfd(char **argv)
 			print_error();
 			return (0);
 		}
-
 	}
 	return (0);
 }
@@ -42,12 +41,13 @@ int	gnlfd(char **argv)
 	char	*line;
 	char	*all;
 
+	fd = 0;
 	count = 0;
 	line = get_next_line(fd);
 	fd = openfd(argv);
 	if (argv[1] && fd > 0)
 	{
-		while (*line != NULL)
+		while (line != NULL)
 		{
 			count++;
 			all = line;
@@ -70,25 +70,26 @@ int	check_close(char **argv)
 	int		start;
 	int		countline;
 
+	countline = 0;
 	count = 0;
 	fd = openfd(argv);
 	if (argv[1])
 	{
-	*line = get_next_line(fd);
-		while (*line != NULL)
+		line = get_next_line(fd);
+		while (line != NULL)
 		{
 			count++;
 			countline ++;
 			start = count -1;
-			if(countline == '\n')
-			{
-				if (start[line] == '0' && countline == '0')
-					return (0);
-				if (start[line] == '1' && countline == '0')
-					return (1);
-			}
+			while (countline == '\n' && start[line] == '0' && countline == '0')
+				return (0);
+			while (countline == '\n' && start[line] == '1' && countline == '0')
+				return (1);
+			free(line);
 		}
+		close(fd);
 	}
+	return count;
 }
 
 int	check_obj(char **argv)
@@ -102,18 +103,33 @@ int	check_obj(char **argv)
 	count[1] = 0;
 	count[2] = 0;
 	fd = openfd(argv);
-	while ((line = get_next_line(fd)))
+	line = get_next_line(fd);
+	while (line != NULL)
 	{
 		i = -1;
 		while (line[++i])
+		{
 			if (line[i] == 'C')
 				count[0]++;
-			else if (line[i] == 'E')
+			else if (line[i] == 'E' || line[i] == 'P')
 				count[1]++;
 			else if (line[i] == 'P')
 				count[2]++;
+		}
 		free(line);
 	}
 	close(fd);
 	return (count[0] >= 1 && count[1] == 1 && count[2] == 1);
+}
+
+void	ff(char **tab, int x, int y)
+{
+	if (y < 0 || x < 0 || !tab[y] || !tab[y][x] ||
+		tab[y][x] == '1' || tab[y][x] == 'V' || tab[y][x] == '\n')
+		return ;
+	tab[y][x] = 'V';
+	ff(tab, x + 1, y);
+	ff(tab, x - 1, y);
+	ff(tab, x, y + 1);
+	ff(tab, x, y - 1);
 }
