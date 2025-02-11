@@ -6,7 +6,7 @@
 /*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 10:14:56 by obellil-          #+#    #+#             */
-/*   Updated: 2025/02/11 14:05:43 by obellil-         ###   ########.fr       */
+/*   Updated: 2025/02/11 15:26:55 by obellil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 
 int	main(int argc, char **argv)
 {
-	t_pos Map;
 
 	// Vérification du nombre d'arguments
 	if (argc != 2)

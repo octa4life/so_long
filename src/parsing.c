@@ -6,7 +6,7 @@
 /*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 19:54:25 by obellil-          #+#    #+#             */
-/*   Updated: 2025/02/11 15:12:12 by obellil-         ###   ########.fr       */
+/*   Updated: 2025/02/11 15:41:37 by obellil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,23 +35,23 @@ int	openfd(char **argv)
 	return (fd);
 }
 
-void	init_struct(t_infra *data, char *fd)
+void	init_struct(t_infra *data, char **argv)
 {
 	if (!data)
 		return ;
-	data->map = fill_map(fd);
+	data->map = fill_map(argv);
 }
 
-char	**fill_map(char *fd, char **argv)
+char	*fill_map(char *fd)
 {
 	char	*line;
 	char	**map;
 	int		i;
 
-	fd = openfd(argv);
-	if (fd < 0)
+	fd = openfd(map);
+	if (fd <= 0)
 		return (NULL);
-	if (argv[1] && fd > 0)
+	if (fd > 0)
 	{
 		map = malloc(sizeof(char *) * 1000);
 		if (!map)
@@ -66,6 +66,7 @@ char	**fill_map(char *fd, char **argv)
 			if (i >= 1000)
 				break ;
 			map[i++] = line;
+			line = get_next_line(fd);
 		}
 		map[i] = NULL;
 		close(fd);
