@@ -6,7 +6,7 @@
 /*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 19:54:25 by obellil-          #+#    #+#             */
-/*   Updated: 2025/02/10 17:05:30 by obellil-         ###   ########.fr       */
+/*   Updated: 2025/02/11 15:12:12 by obellil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	openfd(char **argv)
 	fd = 0;
 	if (argv[1])
 	{
-		if (ft_strnstr(argv[1] ,".ber", 15))
+		if (ft_strnstr(argv[1], ".ber", 15))
 		{
 			fd = open(argv[1], O_RDONLY);
 			printf("%d", fd);
@@ -33,6 +33,44 @@ int	openfd(char **argv)
 		}
 	}
 	return (fd);
+}
+
+void	init_struct(t_infra *data, char *fd)
+{
+	if (!data)
+		return ;
+	data->map = fill_map(fd);
+}
+
+char	**fill_map(char *fd, char **argv)
+{
+	char	*line;
+	char	**map;
+	int		i;
+
+	fd = openfd(argv);
+	if (fd < 0)
+		return (NULL);
+	if (argv[1] && fd > 0)
+	{
+		map = malloc(sizeof(char *) * 1000);
+		if (!map)
+		{
+			close(fd);
+			return (NULL);
+		}
+		i = 0;
+		line = get_next_line(fd);
+		while (line != NULL)
+		{
+			if (i >= 1000)
+				break ;
+			map[i++] = line;
+		}
+		map[i] = NULL;
+		close(fd);
+	}
+		return (map);
 }
 
 int	gnlfd(char **argv)
@@ -83,7 +121,7 @@ int	check_close(char **argv)
 			countline ++;
 			start = count -1;
 			if (countline == '\n' && start[line] == '0' && countline == '0')
-				return (0);
+				return (free(line),0);
 			if (countline == '\n' && start[line] == '1' && countline == '0')
 				return (free(line), 1);
 		}
@@ -92,44 +130,3 @@ int	check_close(char **argv)
 	return (count);
 }
 
-int	check_obj(char **argv)
-{
-	int		fd;
-	char	*line;
-	int		count[3];
-	int		i;
-
-	count[0] = 0;
-	count[1] = 0;
-	count[2] = 0;
-	fd = openfd(argv);
-	line = get_next_line(fd);
-	while (line != NULL)
-	{
-		i = -1;
-		while (line[++i])
-		{
-			if (line[i] == 'C')
-				count[0]++;
-			else if (line[i] == 'E' || line[i] == 'P')
-				count[1]++;
-			else if (line[i] == 'P')
-				count[2]++;
-		}
-		free(line);
-	}
-	close(fd);
-	return (count[0] >= 1 && count[1] == 1 && count[2] == 1);
-}
-
-void	ff(char **tab, int x, int y)
-{
-	if (y < 0 || x < 0 || !tab[y] || !tab[y][x] ||
-		tab[y][x] == '1' || tab[y][x] == 'V' || tab[y][x] == '\n')
-		return ;
-	tab[y][x] = 'V';
-	ff(tab, x + 1, y);
-	ff(tab, x - 1, y);
-	ff(tab, x, y + 1);
-	ff(tab, x, y - 1);
-}
