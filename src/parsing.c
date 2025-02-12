@@ -6,7 +6,7 @@
 /*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 19:54:25 by obellil-          #+#    #+#             */
-/*   Updated: 2025/02/11 15:41:37 by obellil-         ###   ########.fr       */
+/*   Updated: 2025/02/12 09:08:46 by obellil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ char	*fill_map(char *fd)
 		map[i] = NULL;
 		close(fd);
 	}
-		return (map);
+	return (map);
 }
 
 int	gnlfd(char **argv)
