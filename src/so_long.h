@@ -6,7 +6,7 @@
 /*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:42:47 by obellil-          #+#    #+#             */
-/*   Updated: 2025/03/18 12:03:27 by obellil-         ###   ########.fr       */
+/*   Updated: 2025/03/18 17:15:04 by obellil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,6 @@ char	**fill_map(char **argv);
 char	**copy_tab(char **tab);
 
 //Utils
-void	print_error(void);
+void	print_error(char **arg);
 
 #endif

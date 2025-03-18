@@ -6,14 +6,14 @@
 /*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 19:55:08 by obellil-          #+#    #+#             */
-/*   Updated: 2025/02/11 09:23:33 by obellil-         ###   ########.fr       */
+/*   Updated: 2025/03/18 17:18:25 by obellil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	print_error(void)
+void	print_error(char *mess)
 {
-	write(2, "Error\n", 6);
+	write(2, "%s", mess);
 	exit(EXIT_FAILURE);
 }
