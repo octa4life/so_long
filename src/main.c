@@ -6,7 +6,7 @@
 /*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 10:14:56 by obellil-          #+#    #+#             */
-/*   Updated: 2025/02/11 15:26:55 by obellil-         ###   ########.fr       */
+/*   Updated: 2025/03/18 12:03:18 by obellil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,8 @@ int	main(int argc, char **argv)
 		printf("       - One starting position ('P')\n");
 		return (1);
 	}
-	// Si toutes les vérifications passent, afficher un message de succès
+	// Si toutes les vérifications sont good, afficher un message de succès
 	printf("File '%s' successfully validated! The map is ready to be used.\n", argv[1]);
-
-	// Fermeture du fichier (si nécessaire)
 	close(fd);
 
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 09:15:24 by obellil-          #+#    #+#             */
-/*   Updated: 2025/02/11 15:24:34 by obellil-         ###   ########.fr       */
+/*   Updated: 2025/03/18 12:03:35 by obellil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	floodfill(char **tab, t_infra y, t_infra x)
 		}
 		i++;
 	}
-	free_tab(cpy_map);
+	free(cpy_map);
 	return (is_valid);
 }
 
@@ -83,3 +83,31 @@ int	check_obj(char **argv)
 	return (count[0] >= 1 && count[1] == 1 && count[2] == 1);
 }
 
+char **copy_tab(char **tab)
+{
+	int		i;
+	int		len;
+	char	**copy;
+
+	i = 0;
+	len = 0;
+	while (tab[len])
+		len++;
+	copy = malloc((len + 1) * sizeof(char *));
+	if (!copy)
+		return (NULL);
+	while (i < len)
+	{
+		copy[i] = ft_strdup(tab[i]); // Allocate and duplicate the string
+		if (!copy[i])
+		{
+			while (--i >= 0)
+				free(copy[i]);
+			free(copy);
+			return (NULL);
+		}
+		i++;
+	}
+	copy[len] = NULL;
+	return (copy);
+}

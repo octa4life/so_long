@@ -6,7 +6,7 @@
 /*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 19:54:25 by obellil-          #+#    #+#             */
-/*   Updated: 2025/02/12 09:08:46 by obellil-         ###   ########.fr       */
+/*   Updated: 2025/03/18 13:56:45 by obellil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,43 +35,31 @@ int	openfd(char **argv)
 	return (fd);
 }
 
-void	init_struct(t_infra *data, char **argv)
+void init_struct(t_infra *data, char **argv)
 {
-	if (!data)
-		return ;
 	data->map = fill_map(argv);
+	if (!data->map)
+	{
+		perror("Error initializing map");
+		exit(EXIT_FAILURE);
+	}
 }
 
-char	*fill_map(char *fd)
+char **fill_map(char **argv)
 {
-	char	*line;
-	char	**map;
-	int		i;
+	int fd;
+	char *line;
+	char **map = NULL;
 
-	fd = openfd(map);
-	if (fd <= 0)
-		return (NULL);
-	if (fd > 0)
-	{
-		map = malloc(sizeof(char *) * 1000);
-		if (!map)
-		{
-			close(fd);
-			return (NULL);
-		}
-		i = 0;
-		line = get_next_line(fd);
-		while (line != NULL)
-		{
-			if (i >= 1000)
-				break ;
-			map[i++] = line;
-			line = get_next_line(fd);
-		}
-		map[i] = NULL;
-		close(fd);
+	fd = open(argv[1], O_RDONLY);
+	if (fd <= 0) {
+		perror("Error opening file");
+		return NULL;
 	}
-	return (map);
+	while ((line = get_next_line(fd)) != NULL)
+		free(line);
+	close(fd);
+	return map;
 }
 
 int	gnlfd(char **argv)
@@ -79,27 +67,37 @@ int	gnlfd(char **argv)
 	int		count;
 	int		fd;
 	char	*line;
-	char	*all;
 
-	fd = 0;
-	count = 0;
-	line = get_next_line(fd);
 	fd = openfd(argv);
-	if (argv[1] && fd > 0)
+	line = get_next_line(fd);
+	if (fd < 0)
 	{
-		while (line != NULL)
-		{
-			count++;
-			all = line;
-			if (line == all)
-				return (1);
-			else
-				return (0);
-			free(line);
-		}
-		close(fd);
+		printf("Erreur d'ouverture du fichier\n");
+		return (-1);
 	}
-	return (fd);
+	count = 0;
+	printf("baguette\n");
+	while (line!= NULL)
+	{
+		count++;
+		if (line)
+		{
+			printf("test1\n");
+			free(line);
+			close(fd);
+			return (1);
+		}
+		else
+		{
+			printf("test2\n");
+			free(line);
+			close(fd);
+			return (0);
+		}
+	}
+	printf("the end\n");
+	close(fd);
+	return(fd);
 }
 
 int	check_close(char **argv)
