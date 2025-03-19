@@ -6,7 +6,7 @@
 /*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:42:47 by obellil-          #+#    #+#             */
-/*   Updated: 2025/03/18 17:15:04 by obellil-         ###   ########.fr       */
+/*   Updated: 2025/03/19 11:54:31 by obellil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,13 @@ int		check_close(char **argv);
 int		check_obj(char **argv);
 int		floodfill(char **tab, t_infra y, t_infra x);
 void	ff(char **tab, int x, int y);
-void	init_struct(t_infra *data, char **argv);
 char	**fill_map(char **argv);
 char	**copy_tab(char **tab);
+int		check_square_map(char **argv);
 
 //Utils
-void	print_error(char **arg);
+int		print_error(char *mess);
+int		get_line_length(char *line);
+void	init_struct(t_infra *data, char **argv);
 
 #endif

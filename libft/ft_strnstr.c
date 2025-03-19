@@ -6,7 +6,7 @@
 /*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 11:30:37 by obellil-          #+#    #+#             */
-/*   Updated: 2025/02/06 11:15:35 by obellil-         ###   ########.fr       */
+/*   Updated: 2025/03/19 16:55:21 by obellil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,12 @@ char	*ft_strnstr(const char *s1, const char *s2, size_t len)
 }
 
 
-// int	main(void)
-// {
-// 	char	s1[] = "Hello";
-// 	char	*result;
+int	main(void)
+{
+	char	s1[] = "Hello";
+	char	*result;
 
-// 	result = ft_strnstr(s1, ".txt", 13);
-// 	printf("Testing ft_strnstr: %s",result);
-// }
+	result = ft_strnstr(s1, ".txt", 13);
+	printf("Testing ft_strnstr: %s",result);
+}
 

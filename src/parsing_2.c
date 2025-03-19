@@ -6,7 +6,7 @@
 /*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 09:15:24 by obellil-          #+#    #+#             */
-/*   Updated: 2025/03/18 12:03:35 by obellil-         ###   ########.fr       */
+/*   Updated: 2025/03/19 11:25:24 by obellil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,4 +110,21 @@ char **copy_tab(char **tab)
 	}
 	copy[len] = NULL;
 	return (copy);
+}
+
+char **fill_map(char **argv)
+{
+	int fd;
+	char *line;
+	char **map = NULL;
+
+	fd = open(argv[1], O_RDONLY);
+	if (fd <= 0) {
+		print_error("Error opening file");
+		return NULL;
+	}
+	while ((line = get_next_line(fd)) != NULL)
+		free(line);
+	close(fd);
+	return map;
 }
