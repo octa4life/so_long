@@ -6,7 +6,7 @@
 /*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 19:54:25 by obellil-          #+#    #+#             */
-/*   Updated: 2025/03/19 16:50:52 by obellil-         ###   ########.fr       */
+/*   Updated: 2025/03/20 09:44:48 by obellil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	openfd(char **argv)
 	fd = 0;
 	if (argv[1])
 	{
-		while (ft_strnstr(argv[2], ".ber", 15))
+		while (ft_strnstr(argv[1], ".ber", 15))
 		{
 			fd = open(argv[1], O_RDONLY);
 			if (fd > 0)
