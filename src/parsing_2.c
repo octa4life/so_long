@@ -6,7 +6,7 @@
 /*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 09:15:24 by obellil-          #+#    #+#             */
-/*   Updated: 2025/03/19 11:25:24 by obellil-         ###   ########.fr       */
+/*   Updated: 2025/03/27 17:20:42 by obellil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,36 +51,6 @@ void	ff(char **tab, int x, int y)
 	ff(tab, x - 1, y);
 	ff(tab, x, y + 1);
 	ff(tab, x, y - 1);
-}
-
-int	check_obj(char **argv)
-{
-	int		fd;
-	char	*line;
-	int		count[3];
-	int		i;
-
-	count[0] = 0;
-	count[1] = 0;
-	count[2] = 0;
-	fd = openfd(argv);
-	line = get_next_line(fd);
-	while (line != NULL)
-	{
-		i = -1;
-		while (line[++i])
-		{
-			if (line[i] == 'C')
-				count[0]++;
-			else if (line[i] == 'E')
-				count[1]++;
-			else if (line[i] == 'P')
-				count[2]++;
-		}
-		free(line);
-	}
-	close(fd);
-	return (count[0] >= 1 && count[1] == 1 && count[2] == 1);
 }
 
 char **copy_tab(char **tab)
