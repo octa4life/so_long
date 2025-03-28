@@ -6,7 +6,7 @@
 /*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 19:54:25 by obellil-          #+#    #+#             */
-/*   Updated: 2025/03/27 17:57:39 by obellil-         ###   ########.fr       */
+/*   Updated: 2025/03/27 17:59:23 by obellil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ int	check_square_map(char **argv)
 	while (line[first_line_length] && line[first_line_length] != '\n')
 		first_line_length++;
 	free(line);
-
 	while ((line = get_next_line(fd)) != NULL)
 	{
 		line_length = 0;
