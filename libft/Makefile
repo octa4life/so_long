@@ -42,8 +42,6 @@ SRCS=	ft_atoi.c \
 	ft_printwords.c\
 	ft_putchar_fd.c\
 	get_next_line_utils.c\
-	get_next_line_bonus.c\
-	get_next_line_utils_bonus.c\
 
 
 

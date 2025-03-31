@@ -6,7 +6,7 @@
 /*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 15:10:09 by obellil-          #+#    #+#             */
-/*   Updated: 2025/03/27 18:13:03 by obellil-         ###   ########.fr       */
+/*   Updated: 2025/03/31 16:52:36 by obellil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,41 +18,41 @@ int	ft_gnlchr(char *stocker)
 
 	i = 0;
 	if (stocker == NULL)
-		return (0);
+	return (0);
 	while (stocker[i] != '\0')
 	{
-		if (stocker[i] == '\n')
-			return (1);
-		i++;
-	}
+	if (stocker[i] == '\n')
 	return (1);
+	i++;
+	}
+	return (0);
 }
 
 char	*ft_gnljoin(char *nl, char *st)
 {
-	char		*result;
-	size_t		i;
-	size_t		j;
+	char*	result;
+	size_t	i;
+	size_t	j;
 
 	if (!nl)
 	{
 		nl = malloc(sizeof(char));
-		if (!nl)
-			return (NULL);
-		nl[0] = '\0';
+	if (!nl)
+	return (NULL);
+	nl[0] = '\0';
 	}
-	result = malloc((ft_strleen(nl) + ft_strleen(st) + 1) * sizeof(char));
+	result = malloc((ft_strlen_gnl(nl) + ft_strlen_gnl(st) + 1) * sizeof(char));
 	if (!result)
-		return (NULL);
+	return (NULL);
 	i = -1;
 	while (nl[++i] != '\0')
-		result[i] = nl[i];
+	result[i] = nl[i];
 	free(nl);
 	j = 0;
 	while (st[j] && st[j] != '\n')
-		result[i++] = st[j++];
+	result[i++] = st[j++];
 	if (st[j] == '\n')
-		result[i++] = '\n';
+	result[i++] = '\n';
 	result[i] = '\0';
 	return (result);
 }
@@ -65,7 +65,7 @@ char	*ft_gnlclean(char *stocker)
 	i = 0;
 	j = 0;
 	while (stocker[i] && stocker[i] != '\n')
-		i++;
+	i++;
 	if (stocker[i] == '\n')
 		i++;
 	while (stocker[i])
@@ -78,16 +78,16 @@ char	*ft_gnlclean(char *stocker)
 	return (stocker);
 }
 
-size_t	ft_strleen(char *str)
+size_t	ft_strlen_gnl(char *str)
 {
 	size_t	i;
 
 	i = 0;
 	if (!str)
-		return (0);
+	return (0);
 	while (str[i] != '\0' && str[i] != '\n')
-		i++;
+	i++;
 	if (str[i] == '\n')
-		i++;
+	i++;
 	return (i);
 }

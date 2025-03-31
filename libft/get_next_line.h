@@ -6,7 +6,7 @@
 /*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 10:55:15 by obellil-          #+#    #+#             */
-/*   Updated: 2025/02/06 13:04:33 by obellil-         ###   ########.fr       */
+/*   Updated: 2025/03/31 16:56:07 by obellil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,18 @@
 # include <unistd.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
+#  define BUFFER_SIZE 50
 # endif
+
+# include <unistd.h>
+# include <stdlib.h>
+# include <fcntl.h>
+# include <stdio.h>
 
 char	*get_next_line(int fd);
 int		ft_gnlchr(char *stocker);
-char	*ft_gnljoin(char *nl, char *st);
+char	*ft_gnljoin(char *newline, char *stocker);
 char	*ft_gnlclean(char *stocker);
-size_t	ft_strleen(char *str);
+size_t	ft_strlen_gnl(char *str);
 
 #endif
