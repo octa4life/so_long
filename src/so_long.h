@@ -6,7 +6,7 @@
 /*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:42:47 by obellil-          #+#    #+#             */
-/*   Updated: 2025/03/20 09:44:35 by obellil-         ###   ########.fr       */
+/*   Updated: 2025/04/01 11:14:51 by obellil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,17 @@
 # include "../libft/libft.h"
 # include "../minilibx-linux/mlx.h"
 
-typedef struct infra_s
+typedef struct pos_s
 {
-	char	**map;
 	int		x;
 	int		y;
-}				t_infra;
+}				t_pos;
 
-// typedef struct data_s
-// {
-// 	int		data;
+typedef struct data_s
+{
+	char	**map;
+}				t_data;
 
-// }				t_data;
 
 // Parsing
 int		main(int argc, char **argv);
@@ -46,15 +45,15 @@ int		openfd(char **argv);
 int		gnlfd(char **argv);
 int		check_close(char **argv);
 int		check_obj(char **argv);
-int		floodfill(char **tab, t_infra y, t_infra x);
+int		floodfill(char **tab, t_pos y, t_pos x);
 void	ff(char **tab, int x, int y);
 char	**fill_map(char **argv);
 char	**copy_tab(char **tab);
-int		check_square_map(char **argv);
+int		check_square_map(char **map);
 
 //Utils
 int		print_error(char *mess);
 int		get_line_length(char *line);
-void	init_struct(t_infra *data, char **argv);
+void	init_struct(t_data *data, char **argv);
 
 #endif

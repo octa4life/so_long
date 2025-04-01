@@ -6,7 +6,7 @@
 /*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 10:14:56 by obellil-          #+#    #+#             */
-/*   Updated: 2025/03/25 10:23:24 by obellil-         ###   ########.fr       */
+/*   Updated: 2025/04/01 11:16:52 by obellil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,13 @@
 int	main(int argc, char **argv)
 {
 	char		**map;
-	t_infra		start_pos;
+	t_pos		start_pos;
+
+	map = NULL;
 
 	if (argc != 2)
 		return (print_error("Usage: ./so_long map.ber"), 1);
-	if (!check_square_map(argv))
+	if (!check_square_map(map))
 		return (1);
 	if (!check_close(argv))
 		return (1);

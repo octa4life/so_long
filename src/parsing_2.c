@@ -6,13 +6,13 @@
 /*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 09:15:24 by obellil-          #+#    #+#             */
-/*   Updated: 2025/03/27 17:20:42 by obellil-         ###   ########.fr       */
+/*   Updated: 2025/04/01 11:11:16 by obellil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	floodfill(char **tab, t_infra y, t_infra x)
+int	floodfill(char **tab, t_pos y, t_pos x)
 {
 	char	**cpy_map;
 	int		i;
