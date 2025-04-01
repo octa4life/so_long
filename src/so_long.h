@@ -6,7 +6,7 @@
 /*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:42:47 by obellil-          #+#    #+#             */
-/*   Updated: 2025/04/01 11:14:51 by obellil-         ###   ########.fr       */
+/*   Updated: 2025/04/01 14:41:48 by obellil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,34 @@
 # include "../libft/libft.h"
 # include "../minilibx-linux/mlx.h"
 
+typedef struct img_s
+{
+	void	*img_floor;
+	void	*img_player;
+	void	*img_exit;
+	void	*img_wall;
+	void	*img_collect;
+	int		height;
+	int		width;
+	char	*player;
+	char	*floor;
+	char	*wall;
+	char	*collect;
+	char	*exit;
+}				t_img;
+
+typedef struct texture_s
+{
+	char	exit;
+	char	collect;
+	char	player;
+	char	wall;
+	char	space;
+	int		count_p;
+	int		count_e;
+	int		count_c;
+}				t_texture;
+
 typedef struct pos_s
 {
 	int		x;
@@ -35,7 +63,15 @@ typedef struct pos_s
 
 typedef struct data_s
 {
+	void	*mlx_ptr;
+	void	*mlx_win;
+	int		width;
+	int		height;
 	char	**map;
+	t_texture	content;
+	t_img	img;
+	t_pos	pos;
+	int		count;
 }				t_data;
 
 
@@ -43,7 +79,7 @@ typedef struct data_s
 int		main(int argc, char **argv);
 int		openfd(char **argv);
 int		gnlfd(char **argv);
-int		check_close(char **argv);
+int		check_close(char *map_line, char wall, t_data *data);
 int		check_obj(char **argv);
 int		floodfill(char **tab, t_pos y, t_pos x);
 void	ff(char **tab, int x, int y);
