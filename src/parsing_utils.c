@@ -6,7 +6,7 @@
 /*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 19:55:08 by obellil-          #+#    #+#             */
-/*   Updated: 2025/04/01 11:17:36 by obellil-         ###   ########.fr       */
+/*   Updated: 2025/04/01 13:27:27 by obellil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,3 @@ int	print_error(char *mess)
 	exit (1);
 }
 
-int	get_line_length(char *line)
-{
-	int	len;
-
-	len = 0;
-	while (line[len] && line[len] != '\n')
-		len++;
-	return (len);
-}
-
-void init_struct(t_data *data, char **argv)
-{
-	data->map = fill_map(argv);
-	if (!data->map)
-	{
-		print_error("Error : initializing map \n");
-	}
-}
