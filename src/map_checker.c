@@ -6,7 +6,7 @@
 /*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 19:54:25 by obellil-          #+#    #+#             */
-/*   Updated: 2025/04/02 13:41:19 by obellil-         ###   ########.fr       */
+/*   Updated: 2025/04/02 16:06:33 by obellil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int	check_col(char *map_line, char wall, t_data *data)
 	data->width = i;
 	return (1);
 }
+
 int	check_line(char *map_line, char wall)
 {
 	int		i;
