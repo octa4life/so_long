@@ -6,14 +6,14 @@
 /*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 14:23:45 by obellil-          #+#    #+#             */
-/*   Updated: 2025/03/31 16:54:03 by obellil-         ###   ########.fr       */
+/*   Updated: 2025/04/02 13:45:31 by obellil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
 
-char*	get_next_line(int fd)
+char	*get_next_line(int fd)
 {
 	static char	stocker [BUFFER_SIZE + 1] = {};
 	char*newline;

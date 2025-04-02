@@ -6,7 +6,7 @@
 /*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 19:54:25 by obellil-          #+#    #+#             */
-/*   Updated: 2025/04/01 15:23:08 by obellil-         ###   ########.fr       */
+/*   Updated: 2025/04/02 13:41:19 by obellil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,8 @@ int	check_line(char *map_line, char wall)
 	}
 	return (1);
 }
-void	check_collectible(t_data *data)
+
+void	check_obj(t_data *data)
 {
 	int		i;
 	int		y;
@@ -91,7 +92,7 @@ void	check_collectible(t_data *data)
 	}
 }
 
-int	check_other(char *map_line, t_texture*content)
+int	check_other_obj(char *map_line, t_texture*content)
 {
 	int		i;
 
@@ -100,17 +101,19 @@ int	check_other(char *map_line, t_texture*content)
 	{
 		if (content->count_e > 1 || content->count_p > 1)
 		{
-			ft_error("Error\nWrong number of player or exit\n");
+			print_error("Error\nWrong number of player or exit\n");
 			return (0);
 		}
 		if (map_line[i] != content->wall && map_line[i] != content->player
 			&& map_line[i] != content->exit && map_line[i] != content->collect
 			&& map_line[i] != content->space)
 		{
-			ft_error("Error\nUnknown symbol(s) in map\n");
+			print_error("Error\nUnknown symbol(s) in map\n");
 			return (0);
 		}
 		i++;
 	}
 	return (1);
 }
+
+

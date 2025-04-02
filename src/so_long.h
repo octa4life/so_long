@@ -6,7 +6,7 @@
 /*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:42:47 by obellil-          #+#    #+#             */
-/*   Updated: 2025/04/01 14:41:48 by obellil-         ###   ########.fr       */
+/*   Updated: 2025/04/02 13:42:56 by obellil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,20 +76,18 @@ typedef struct data_s
 
 
 // Parsing
-int		main(int argc, char **argv);
-int		openfd(char **argv);
-int		gnlfd(char **argv);
-int		check_close(char *map_line, char wall, t_data *data);
-int		check_obj(char **argv);
-int		floodfill(char **tab, t_pos y, t_pos x);
-void	ff(char **tab, int x, int y);
-char	**fill_map(char **argv);
-char	**copy_tab(char **tab);
-int		check_square_map(char **map);
+// int		main(int argc, char **argv);
+int			check_square_map(char **map);
+int			check_col(char *map_line, char wall, t_data *data);
+int			check_line(char *map_line, char wall);
+void		check_obj(t_data *data);
+int			check_other_obj(char *map_line, t_texture*content);
+
 
 //Utils
+char	**open_fd(char **str, t_data *data);
+char	*get_map(int fd);
+void	*free_map(t_data *data);
 int		print_error(char *mess);
-int		get_line_length(char *line);
-void	init_struct(t_data *data, char **argv);
 
 #endif

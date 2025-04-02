@@ -13,7 +13,7 @@ MLX = $(MLX_DIR)/libmlx.a
 MLX_FLAGS = -L$(MLX_DIR) -lmlx -lX11 -lXext
 
 # Sources files
-_SRCS = main.c parsing.c parsing_utils.c parsing_2.c
+_SRCS = map_checker.c utils.c parsing.c
 SRCS = $(addprefix $(SRC_DIR)/, $(_SRCS))
 
 _OBJS = $(_SRCS:.c=.o)
