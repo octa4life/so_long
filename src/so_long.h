@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: octavie <octavie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:42:47 by obellil-          #+#    #+#             */
-/*   Updated: 2025/04/02 13:42:56 by obellil-         ###   ########.fr       */
+/*   Updated: 2025/05/05 10:44:12 by octavie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
@@ -21,11 +22,11 @@
 # include <string.h>
 # include <fcntl.h>
 # include <stdbool.h>
-# include <X11/keysym.h>
-# include <X11/X.h>
+//# include <X11/keysym.h>
+//# include <X11/X.h>
 # include <fcntl.h>
 # include "../libft/libft.h"
-# include "../minilibx-linux/mlx.h"
+//# include "../minilibx-linux/mlx.h"
 
 typedef struct img_s
 {
@@ -43,7 +44,7 @@ typedef struct img_s
 	char	*exit;
 }				t_img;
 
-typedef struct texture_s
+typedef struct cnt_s
 {
 	char	exit;
 	char	collect;
@@ -53,7 +54,7 @@ typedef struct texture_s
 	int		count_p;
 	int		count_e;
 	int		count_c;
-}				t_texture;
+}				t_cnt;
 
 typedef struct pos_s
 {
@@ -68,26 +69,41 @@ typedef struct data_s
 	int		width;
 	int		height;
 	char	**map;
-	t_texture	content;
+	t_cnt	content;
 	t_img	img;
 	t_pos	pos;
 	int		count;
 }				t_data;
 
+int		ft_strchr(char *str, char *cmp);// a mettre dans la libft
+void	*print_error(char *str);
+int		ft_same_char(char *str);
 
-// Parsing
-// int		main(int argc, char **argv);
-int			check_square_map(char **map);
-int			check_col(char *map_line, char wall, t_data *data);
-int			check_line(char *map_line, char wall);
-void		check_obj(t_data *data);
-int			check_other_obj(char *map_line, t_texture*content);
-
-
-//Utils
-char	**open_fd(char **str, t_data *data);
 char	*get_map(int fd);
-void	*free_map(t_data *data);
-int		print_error(char *mess);
+char	**map_check(char **str, t_data *data);
+int		checker_map(char **argv);
+
+int		check_col(char *map_line, char col, t_data *data);
+int		check_line(char *map_line, char wall);
+int		check_other(char *map_line, t_cnt *content);
+void	check_content(t_data *data);
+int		check_format(char **map);
+int		check_collectible(t_data *data);
+
+void	set_img(t_data *data);
+void	set_obj(t_cnt *content);
+
+void	core_display(t_data *data);
+int		display(t_data *data);
+void	display_other(t_data *data);
+void	display_background(t_data *data);
+void	mouv_down(t_data *data);
+void	mouv_left(t_data *data);
+void	mouv_right(t_data *data);
+void	mouv_top(t_data *data);
+void	print_img(t_data *data, void *img, int x, int y);
+
+int		key_press(int keysym, t_data *data);
+int		end(t_data *data);
 
 #endif
