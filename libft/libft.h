@@ -6,7 +6,7 @@
 /*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 10:04:05 by obellil-          #+#    #+#             */
-/*   Updated: 2025/03/31 16:57:15 by obellil-         ###   ########.fr       */
+/*   Updated: 2025/05/05 15:44:49 by obellil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ size_t		ft_strlcpy(char *dst, const char *src, size_t size);
 size_t		ft_strlcat(char *dst, const char *src, size_t size);
 int			ft_toupper(int c);
 int			ft_tolower(int c);
-char		*ft_strchr(const char *s, int c);
+int			ft_strchr(char *str, char *cmp);
 char		*ft_strrchr(const char *s, int c);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
 void		*ft_memchr(const void *s, int c, size_t n);
@@ -56,10 +56,6 @@ void		ft_putendl_fd(char *s, int fd);
 void		ft_putnbr_fd(int n, int fd);
 int			ft_putchar(char c);
 void		ft_putstr(char *str);
-char		*get_next_line(int fd);
-int			ft_gnlchr(char *stocker);
-char		*ft_gnljoin(char *nl, char *st);
-char		*ft_gnlclean(char *stocker);
 void		ft_putchar_length(char character, int *length);
 void		ft_string(char *args, int *length);
 void		ft_number(int number, int *length);
@@ -67,9 +63,7 @@ void		ft_hexadecimal(unsigned int x, int *length, char x_or_x);
 void		ft_unsigned_int(unsigned int u, int *length);
 int			ft_pointer(size_t pointer, int *length);
 int			ft_printf(const char *string, ...);
-char		*get_next_line(int fd);
-int			ft_gnlchr(char *stocker);
-char		*ft_gnljoin(char *newline, char *stocker);
-char		*ft_gnlclean(char *stocker);
-size_t		ft_strlen_gnl(char *str);
+int			gnl(int fd, char **str);
+char		*ft_stradd(char *str, char buff);
+
 #endif

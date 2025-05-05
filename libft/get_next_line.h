@@ -6,7 +6,7 @@
 /*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 10:55:15 by obellil-          #+#    #+#             */
-/*   Updated: 2025/03/31 16:56:07 by obellil-         ###   ########.fr       */
+/*   Updated: 2025/05/05 15:43:28 by obellil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,8 @@
 # include <fcntl.h>
 # include <stdio.h>
 
-char	*get_next_line(int fd);
-int		ft_gnlchr(char *stocker);
-char	*ft_gnljoin(char *newline, char *stocker);
-char	*ft_gnlclean(char *stocker);
-size_t	ft_strlen_gnl(char *str);
+size_t		ft_strlen(const char *c);
+int			gnl(int fd, char **str);
+char		*ft_stradd(char *str, char buff);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: octavie <octavie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:42:47 by obellil-          #+#    #+#             */
-/*   Updated: 2025/05/05 10:44:12 by octavie          ###   ########.fr       */
+/*   Updated: 2025/05/05 15:52:50 by obellil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@
 # include <string.h>
 # include <fcntl.h>
 # include <stdbool.h>
-//# include <X11/keysym.h>
-//# include <X11/X.h>
+# include <X11/keysym.h>
+# include <X11/X.h>
 # include <fcntl.h>
 # include "../libft/libft.h"
-//# include "../minilibx-linux/mlx.h"
+# include "../minilibx-linux/mlx.h"
 
 typedef struct img_s
 {
@@ -75,27 +75,30 @@ typedef struct data_s
 	int		count;
 }				t_data;
 
-int		ft_strchr(char *str, char *cmp);// a mettre dans la libft
 void	*print_error(char *str);
 int		ft_same_char(char *str);
+void	*free_map(t_data *data);
 
 char	*get_map(int fd);
 char	**map_check(char **str, t_data *data);
 int		checker_map(char **argv);
+char	**parse_map(int fd, t_data *data);
 
 int		check_col(char *map_line, char col, t_data *data);
 int		check_line(char *map_line, char wall);
-int		check_other(char *map_line, t_cnt *content);
-void	check_content(t_data *data);
 int		check_format(char **map);
-int		check_collectible(t_data *data);
+int		check_collectible(char *map_line, t_cnt *content);
+void	check_content(t_data *data);
+int		check_collect(t_data *data);
 
 void	set_img(t_data *data);
 void	set_obj(t_cnt *content);
+int		get_next_line(int fd, char **str);
+char	*ft_stradd(char *str, char buff);
 
 void	core_display(t_data *data);
 int		display(t_data *data);
-void	display_other(t_data *data);
+void	display_content(t_data *data);
 void	display_background(t_data *data);
 void	mouv_down(t_data *data);
 void	mouv_left(t_data *data);
@@ -104,6 +107,6 @@ void	mouv_top(t_data *data);
 void	print_img(t_data *data, void *img, int x, int y);
 
 int		key_press(int keysym, t_data *data);
-int		end(t_data *data);
+int		finish(t_data *data);
 
 #endif

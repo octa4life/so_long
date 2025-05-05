@@ -6,42 +6,66 @@
 /*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 14:23:45 by obellil-          #+#    #+#             */
-/*   Updated: 2025/04/02 13:45:31 by obellil-         ###   ########.fr       */
+/*   Updated: 2025/05/05 15:43:43 by obellil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-
-char	*get_next_line(int fd)
+char	*ft_stradd(char *str, char buff)
 {
-	static char	stocker [BUFFER_SIZE + 1] = {};
-	char*newline;
-	int	to_read;
+	int		i;
+	char	*ret;
 
-	newline = NULL;
-	if (fd < 0 || BUFFER_SIZE <= 0)
-	return (NULL);
-	if (ft_gnlchr(stocker))
-			(ft_gnlclean(stocker), newline = ft_gnljoin(newline, stocker));
-	to_read = 1;
-	while (to_read > 0 && ft_gnlchr(stocker) == 0)
+	i = 0;
+	ret = (char *)malloc(sizeof(char) * (ft_strlen(str) + 2));
+	if (ret == NULL)
+		return (NULL);
+	while (str[i])
 	{
-		to_read = read(fd, stocker, BUFFER_SIZE);
-		if (to_read < 0)
-		return (free(newline), NULL);
-	if (to_read == 0)
-	{
-	if (newline != NULL && newline[0] != '\0')
-	return (newline);
-	return (free(newline), NULL);
+		ret[i] = str[i];
+		i++;
 	}
-	stocker[to_read] = '\0';
-	newline = ft_gnljoin(newline, stocker);
-	}
-	return (newline);
+	free(str);
+	ret[i] = buff;
+	ret[++i] = '\0';
+	return (ret);
 }
 
+size_t	ft_strlen(const char *str)
+{
+	size_t	i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		i++;
+	}
+	return (i);
+}
+
+int	get_next_line(int fd, char **str)
+{
+	char			buff;
+	int				ret;
+
+	ret = read(fd, &buff, 1);
+	while (ret > 0)
+	{
+		*str = ft_stradd(*str, buff);
+		if (buff == '\n')
+			return (ret);
+		else
+			ret += 1;
+		ret = read(fd, &buff, 1);
+	}
+	if (ret == 0)
+	{
+		free(*str);
+		*str = NULL;
+	}
+	return (ret);
+}
 // int	main(void)
 // {
 // 	int		fd;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mouv.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: octavie <octavie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 09:53:02 by octavie           #+#    #+#             */
-/*   Updated: 2025/05/05 10:20:32 by octavie          ###   ########.fr       */
+/*   Updated: 2025/05/05 15:38:31 by obellil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ void	mouv_top(t_data *data)
 		}
 		else
 		{
-			if (chk_collect(data) == 0)
+			if (check_collect(data) == 0)
 			{
 				printf("GG WL bro tu as gagne en : %d coup !\n",
 					data->count);
-				end(data);
+				finish(data);
 			}
 		}
 	}
@@ -58,11 +58,11 @@ void	mouv_right(t_data *data)
 		}
 		else
 		{
-			if (chk_collect(data) == 0)
+			if (check_collect(data) == 0)
 			{
 				printf("GG WL bro tu as gagne en : %d coup !\n",
 					data->count);
-				end(data);
+				finish(data);
 			}
 		}
 	}
@@ -86,11 +86,11 @@ void	mouv_left(t_data *data)
 		}
 		else
 		{
-			if (chk_collect(data) == 0)
+			if (check_collect(data) == 0)
 			{
 				printf("GG WL bro tu as gagne en : %d coup !\n",
 					data->count);
-				end(data);
+				finish(data);
 			}
 		}
 	}
@@ -114,11 +114,11 @@ void	mouv_down(t_data *data)
 		}
 		else
 		{
-			if (chk_collect(data) == 0)
+			if (check_collect(data) == 0)
 			{
 				printf("GG WL bro tu as gagne en : %d coup !\n",
 					data->count);
-				end(data);
+				finish(data);
 			}
 		}
 	}

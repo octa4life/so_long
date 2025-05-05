@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_up_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: octavie <octavie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 09:35:13 by octavie           #+#    #+#             */
-/*   Updated: 2025/05/05 09:38:14 by octavie          ###   ########.fr       */
+/*   Updated: 2025/05/05 14:12:46 by obellil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*get_map(int fd)
 
 	line_map = ft_strdup("");
 	buff = ft_strdup("");
-	char_count = gnl(fd, &line_map);
+	char_count = get_next_line(fd, &line_map);
 	if (char_count > 0)
 	{
 		tmp_buff = buff;
@@ -31,7 +31,7 @@ char	*get_map(int fd)
 			free(tmp_buff);
 			free(line_map);
 			line_map = ft_strdup("");
-			char_count = gnl(fd, &line_map);
+			char_count = get_next_line(fd, &line_map);
 			tmp_buff = buff;
 		}
 		return (buff);
@@ -47,7 +47,7 @@ char	**map_check(char **str, t_data *data)
 	fd = 0;
 	data->map = NULL;
 	if (ft_strchr(str[1], ".ber") == 0)
-		return (print_error("Error : No correct format map founded\n"));
+		return (print_error("Error : This format is not  .ber'map'\n"));
 	else
 	{
 		fd = open(str[1], O_RDONLY);
@@ -60,7 +60,7 @@ char	**map_check(char **str, t_data *data)
 		{
 			free_map(data);
 			return (print_error(
-					"Error : Need 1 Player/Exit and at least 1 Object\n"));
+					"Error : Need 1 Player/Exit and 1 Collectible\n"));
 		}
 	}
 	return (data->map);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   display.c                                          :+:      :+:    :+:   */
+/*   displays.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: octavie <octavie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 09:52:05 by octavie           #+#    #+#             */
-/*   Updated: 2025/05/05 10:28:26 by octavie          ###   ########.fr       */
+/*   Updated: 2025/05/05 15:52:43 by obellil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	display_background(t_data *data)
 	}
 }
 
-void	display_other(t_data *data)
+void	display_content(t_data *data)
 {
 	int		i;
 	int		y;
@@ -65,7 +65,7 @@ void	display_other(t_data *data)
 int	display(t_data *data)
 {
 	display_background(data);
-	display_other(data);
+	display_content(data);
 	return (0);
 }
 
@@ -81,9 +81,9 @@ void	core_display(t_data *data)
 	}
 	mlx_loop_hook(data->mlx_ptr, &display, data);
 	mlx_hook(data->mlx_win, KeyRelease, KeyReleaseMask, &key_press, data);
-	mlx_hook(data->mlx_win, 17, 0, &end, data);
+	mlx_hook(data->mlx_win, 17, 0, &finish, data);
 	mlx_loop(data->mlx_ptr);
-	end(data);
+	finish(data);
 }
 
 void	print_img(t_data *data, void *img, int x, int y)
