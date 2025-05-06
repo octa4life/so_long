@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   displays.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: octavie <octavie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 09:52:05 by octavie           #+#    #+#             */
-/*   Updated: 2025/05/05 15:52:43 by obellil-         ###   ########.fr       */
+/*   Updated: 2025/05/06 21:50:32 by octavie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	display_background(t_data *data)
+void	render_background(t_data *data)
 {
 	int		i;
 	int		y;
@@ -34,7 +33,7 @@ void	display_background(t_data *data)
 	}
 }
 
-void	display_content(t_data *data)
+void	render_other(t_data *data)
 {
 	int		i;
 	int		y;
@@ -62,14 +61,14 @@ void	display_content(t_data *data)
 	}
 }
 
-int	display(t_data *data)
+int	render(t_data *data)
 {
-	display_background(data);
-	display_content(data);
+	render_background(data);
+	render_other(data);
 	return (0);
 }
 
-void	core_display(t_data *data)
+void	core_render(t_data *data)
 {
 	data->mlx_win = mlx_new_window(data->mlx_ptr,
 			(data->width * data->img.width), (data->height * data->img.height),
@@ -79,11 +78,11 @@ void	core_display(t_data *data)
 		free(data->mlx_ptr);
 		return ;
 	}
-	mlx_loop_hook(data->mlx_ptr, &display, data);
+	mlx_loop_hook(data->mlx_ptr, &render, data);
 	mlx_hook(data->mlx_win, KeyRelease, KeyReleaseMask, &key_press, data);
-	mlx_hook(data->mlx_win, 17, 0, &finish, data);
+	mlx_hook(data->mlx_win, 17, 0, &end, data);
 	mlx_loop(data->mlx_ptr);
-	finish(data);
+	end(data);
 }
 
 void	print_img(t_data *data, void *img, int x, int y)

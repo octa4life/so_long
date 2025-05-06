@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_up_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: octavie <octavie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 09:35:13 by octavie           #+#    #+#             */
-/*   Updated: 2025/05/06 15:46:45 by obellil-         ###   ########.fr       */
+/*   Updated: 2025/05/06 21:44:34 by octavie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*get_map(int fd)
 
 	line_map = ft_strdup("");
 	buff = ft_strdup("");
-	char_count = get_next_line(fd, &line_map);
+	char_count = gnl(fd, &line_map);
 	if (char_count > 0)
 	{
 		tmp_buff = buff;
@@ -31,35 +31,62 @@ char	*get_map(int fd)
 			free(tmp_buff);
 			free(line_map);
 			line_map = ft_strdup("");
-			char_count = get_next_line(fd, &line_map);
+			char_count = gnl(fd, &line_map);
 			tmp_buff = buff;
 		}
 		return (buff);
 	}
-	print_error("Error : Wrong lecture map\n");
+	ft_error("Error\nWrong lecture map\n");
 	return (NULL);
 }
 
-char	**map_check(char **str, t_data *data)
+char	**parse_map(int fd, t_data *data)
 {
-	int	fd;
+	int		i;
 
-	data->map = NULL;
-	if (!ft_strchr(str[1], ".ber"))
-		return (print_error("Error : Invalid map format\n"));
-	fd = open(str[1], O_RDONLY);
-	if (fd < 0)
-		return (print_error("Error : Can't open map\n"));
-	data->map = parse_map(fd, data);
-	close(fd);
-	if (!data->map)
-		return (NULL);
-	check_content(data);
-	if (data->content.count_c < 1 || data->content.count_e != 1
-		|| data->content.count_p != 1)
+	i = 1;
+	data->map = ft_split(get_map(fd), '\n');
+	ft_check_content(data);
+	if (!(ft_check_format(data->map)))
+		return (ft_free_map(data));
+	if (!(ft_check_line(data->map[0], data->content.wall)))
+		return (ft_free_map(data));
+	while (data->map[i] != NULL)
 	{
-		free_map(data);
-		return (print_error("Error : Invalid map components\n"));
+		if (!(ft_check_col(data->map[i], data->content.wall, data)))
+			return (ft_free_map(data));
+		else if (!(ft_check_other(data->map[i], &(data->content))))
+			return (ft_free_map(data));
+		i++;
+	}
+	data->height = i;
+	if (!(ft_check_line(data->map[i - 1], data->content.wall)))
+		return (ft_free_map(data));
+	return (data->map);
+}
+
+char	**map_core(char **str, t_data *data)
+{
+	int		fd;
+
+	fd = 0;
+	data->map = NULL;
+	if (ft_strchr(str[1], ".ber") == 0)
+		return (ft_error("Error\nNo correct format map founded\n"));
+	else
+	{
+		fd = open(str[1], O_RDONLY);
+		if (fd > 0)
+			data->map = parse_map(fd, data);
+		else
+			return (ft_error("Error\nFailed to open file\n"));
+		if ((data->content.count_c == 0 || data->content.count_e != 1
+				|| data->content.count_p != 1) && data->map != NULL)
+		{
+			ft_free_map(data);
+			return (ft_error(
+					"Error\nNeed 1 Player/Exit and at least 1 Object\n"));
+		}
 	}
 	return (data->map);
 }

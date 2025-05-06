@@ -3,40 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: octavie <octavie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 10:14:56 by obellil-          #+#    #+#             */
-/*   Updated: 2025/05/06 09:21:58 by obellil-         ###   ########.fr       */
+/*   Updated: 2025/05/06 21:49:10 by octavie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-int	check_format(char **map)
-{
-	int		y;
-	int		x;
-	int		count_x;
-
-	x = 0;
-	y = 0;
-	count_x = 0;
-	while (map[0][count_x])
-		count_x++;
-	while (map[y] != NULL)
-	{
-		while (map[y][x])
-			x++;
-		if (x != count_x)
-		{
-			print_error("Error : Your map must be a rectangle or a square\n");
-			return (0);
-		}
-		x = 0;
-		y++;
-	}
-	return (1);
-}
 
 int main(int argc, char **argv)
 {

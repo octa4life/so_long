@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: octavie <octavie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:42:47 by obellil-          #+#    #+#             */
-/*   Updated: 2025/05/06 13:59:48 by obellil-         ###   ########.fr       */
+/*   Updated: 2025/05/06 21:45:39 by octavie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,43 +75,36 @@ typedef struct data_s
 	int		count;
 }				t_data;
 
-// utils
-void	*print_error(char *str);
+void	*ft_error(char *str);
 int		ft_same_char(char *str);
-void	*free_map(t_data *data);
-int		key_press(int keysym, t_data *data);
-int		finish(t_data *data);
 
-// init
+int		ft_same_char(char *str);
 char	*get_map(int fd);
-char	**map_check(char **str, t_data *data);
-char	**parse_map(int fd, t_data *data);
-// int		init_struct(t_data *data, int fd);
+char	**map_core(char **str, t_data *data);
+int		chk_map(char **argv);
 
-// checker
-int		checker_map(char **argv);
-int		check_col(char *map_line, char col, t_data *data);
-int		check_line(char *map_line, char wall);
-int		check_format(char **map);
-int		check_collectible(char *map_line, t_cnt *content);
-void	check_content(t_data *data);
-int		check_collect(t_data *data);
+int		ft_check_col(char *map_line, char col, t_data *data);
+int		ft_check_line(char *map_line, char wall);
+int		ft_check_other(char *map_line, t_cnt *content);
+void	ft_check_content(t_data *data);
+int		ft_check_format(char **map);
+int		chk_collect(t_data *data);
 
-// set
 void	set_img(t_data *data);
-void	set_obj(t_cnt *content);
-int		get_next_line(int fd, char **str);
-char	*ft_stradd(char *str, char buff);
+void	set_content(t_cnt *content);
 
-// display & mouv
-void	core_display(t_data *data);
-int		display(t_data *data);
-void	display_content(t_data *data);
-void	display_background(t_data *data);
-void	mouv_down(t_data *data);
-void	mouv_left(t_data *data);
-void	mouv_right(t_data *data);
-void	mouv_top(t_data *data);
+void	core_render(t_data *data);
+int		render(t_data *data);
+void	render_other(t_data *data);
+void	render_background(t_data *data);
+void	render_down(t_data *data);
+void	render_left(t_data *data);
+void	render_right(t_data *data);
+void	render_top(t_data *data);
 void	print_img(t_data *data, void *img, int x, int y);
+
+int		key_press(int keysym, t_data *data);
+int		chk_collect(t_data *data);
+int		end(t_data *data);
 
 #endif
