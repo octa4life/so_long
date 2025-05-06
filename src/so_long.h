@@ -6,7 +6,7 @@
 /*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:42:47 by obellil-          #+#    #+#             */
-/*   Updated: 2025/05/05 15:52:50 by obellil-         ###   ########.fr       */
+/*   Updated: 2025/05/06 13:59:48 by obellil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,15 +75,21 @@ typedef struct data_s
 	int		count;
 }				t_data;
 
+// utils
 void	*print_error(char *str);
 int		ft_same_char(char *str);
 void	*free_map(t_data *data);
+int		key_press(int keysym, t_data *data);
+int		finish(t_data *data);
 
+// init
 char	*get_map(int fd);
 char	**map_check(char **str, t_data *data);
-int		checker_map(char **argv);
 char	**parse_map(int fd, t_data *data);
+// int		init_struct(t_data *data, int fd);
 
+// checker
+int		checker_map(char **argv);
 int		check_col(char *map_line, char col, t_data *data);
 int		check_line(char *map_line, char wall);
 int		check_format(char **map);
@@ -91,11 +97,13 @@ int		check_collectible(char *map_line, t_cnt *content);
 void	check_content(t_data *data);
 int		check_collect(t_data *data);
 
+// set
 void	set_img(t_data *data);
 void	set_obj(t_cnt *content);
 int		get_next_line(int fd, char **str);
 char	*ft_stradd(char *str, char buff);
 
+// display & mouv
 void	core_display(t_data *data);
 int		display(t_data *data);
 void	display_content(t_data *data);
@@ -105,8 +113,5 @@ void	mouv_left(t_data *data);
 void	mouv_right(t_data *data);
 void	mouv_top(t_data *data);
 void	print_img(t_data *data, void *img, int x, int y);
-
-int		key_press(int keysym, t_data *data);
-int		finish(t_data *data);
 
 #endif

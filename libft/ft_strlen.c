@@ -6,7 +6,7 @@
 /*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 11:15:18 by obellil-          #+#    #+#             */
-/*   Updated: 2024/11/05 18:03:10 by obellil-         ###   ########.fr       */
+/*   Updated: 2025/05/06 09:49:09 by obellil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,16 @@
 
 size_t	ft_strlen(const char *str)
 {
-	size_t	i;
+	int		i;
 
-	i = 0;
-	while (str[i] != '\0')
+	if (str != NULL)
 	{
-		i++;
+		i = 0;
+		while (str[i])
+			i++;
+		return (i);
 	}
-	return (i);
+	return (0);
 }
 /*
 int	main()

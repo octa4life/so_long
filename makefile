@@ -6,7 +6,7 @@
 #    By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/05 14:07:11 by obellil-          #+#    #+#              #
-#    Updated: 2025/05/05 15:50:13 by obellil-         ###   ########.fr        #
+#    Updated: 2025/05/06 14:09:19 by obellil-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,17 @@ NAME	= so_long
 CC		= gcc
 CFLAGS	= -Wall -Wextra -Werror -fPIC -g3
 RM		= rm -f
+
+DEF_COLOR = \033[0;39m
+GRAY = \033[0;90m
+RED = \033[0;91m
+GREEN = \033[0;92m
+YELLOW = \033[0;93m
+BLUE = \033[0;94m
+MAGENTA = \033[0;95m
+CYAN = \033[0;96m
+WHITE = \033[0;97m
+NC = \033[0m # No Color
 
 SRC_DIR	= src
 OBJ_DIR	= objs
@@ -49,26 +60,31 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/gnl/%.c
 	$(CC) $(CFLAGS) -I$(INC_DIR) -c $< -o $@
 
 $(LIBFT):
-	$(MAKE) -C $(LIBFT_DIR)
+	@echo "$(YELLOW)>>> Compilation de libft <<<$(DEF_COLOR)"
+	$(MAKE) -sC $(LIBFT_DIR)
+	@echo "$(GREEN)>>> libft.a créé avec succès <<<$(DEF_COLOR)"
 
 $(MLX):
-	$(MAKE) -C $(MLX_DIR)
+	$(MAKE) -sC $(MLX_DIR)
 
 clean:
+	@echo "$(YELLOW)Cleaning object files...$(NC)"
 	$(RM) -r $(OBJ_DIR)
-	$(MAKE) clean -C $(LIBFT_DIR)
-	$(MAKE) clean -C $(MLX_DIR)
+	$(MAKE) clean -sC $(LIBFT_DIR)
+	$(MAKE) clean -sC $(MLX_DIR)
+	@echo "$(GREEN)Object files cleaned!🧹​$(NC)"
 
 fclean:	clean
 	$(RM) $(NAME)
-	$(MAKE) fclean -C $(LIBFT_DIR)
-	$(MAKE) clean -C $(MLX_DIR)
+	$(MAKE) fclean -sC $(LIBFT_DIR)
+	$(MAKE) clean -sC $(MLX_DIR)
+	@echo "$(GREEN)All files cleaned! 🧹​$(NC)"
 
 re:	fclean all
-
+	@echo "$(GREEN)>>> Cleaned and rebuilt everything for PIPEX ! 💯​ <<<$(DEF_COLOR)"
 bonus: re
 
 test: all
 	./$(NAME)
 
-.PHONY:	all clean fclean re bonus test
+.PHONY:	all clean fclean re

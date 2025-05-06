@@ -6,7 +6,7 @@
 /*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 09:35:13 by octavie           #+#    #+#             */
-/*   Updated: 2025/05/05 14:12:46 by obellil-         ###   ########.fr       */
+/*   Updated: 2025/05/06 15:46:45 by obellil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,26 +42,24 @@ char	*get_map(int fd)
 
 char	**map_check(char **str, t_data *data)
 {
-	int		fd;
+	int	fd;
 
-	fd = 0;
 	data->map = NULL;
-	if (ft_strchr(str[1], ".ber") == 0)
-		return (print_error("Error : This format is not  .ber'map'\n"));
-	else
+	if (!ft_strchr(str[1], ".ber"))
+		return (print_error("Error : Invalid map format\n"));
+	fd = open(str[1], O_RDONLY);
+	if (fd < 0)
+		return (print_error("Error : Can't open map\n"));
+	data->map = parse_map(fd, data);
+	close(fd);
+	if (!data->map)
+		return (NULL);
+	check_content(data);
+	if (data->content.count_c < 1 || data->content.count_e != 1
+		|| data->content.count_p != 1)
 	{
-		fd = open(str[1], O_RDONLY);
-		if (fd > 0)
-			data->map = parse_map(fd, data);
-		else
-			return (print_error("Error : Failed to open file\n"));
-		if ((data->content.count_c == 0 || data->content.count_e != 1
-				|| data->content.count_p != 1) && data->map != NULL)
-		{
-			free_map(data);
-			return (print_error(
-					"Error : Need 1 Player/Exit and 1 Collectible\n"));
-		}
+		free_map(data);
+		return (print_error("Error : Invalid map components\n"));
 	}
 	return (data->map);
 }

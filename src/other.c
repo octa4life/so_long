@@ -6,7 +6,7 @@
 /*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 10:22:36 by octavie           #+#    #+#             */
-/*   Updated: 2025/05/05 15:39:22 by obellil-         ###   ########.fr       */
+/*   Updated: 2025/05/06 16:06:03 by obellil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ int	key_press(int keysym, t_data *data)
 		mouv_down(data);
 	return (0);
 }
+
 int	check_collect(t_data *data)
 {
 	int		i;

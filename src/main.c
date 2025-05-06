@@ -6,7 +6,7 @@
 /*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 10:14:56 by obellil-          #+#    #+#             */
-/*   Updated: 2025/05/05 15:54:57 by obellil-         ###   ########.fr       */
+/*   Updated: 2025/05/06 09:21:58 by obellil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,14 @@ int	check_format(char **map)
 	}
 	return (1);
 }
+
 int main(int argc, char **argv)
 {
 	t_data data;
 
 	if (argc != 2)
 	{
-		print_error("Error : This program need 1 .ber file as argument\n");
+		print_error("Error: Need 1 .ber file\n");
 		return (0);
 	}
 	else
