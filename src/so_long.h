@@ -6,10 +6,9 @@
 /*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:42:47 by obellil-          #+#    #+#             */
-/*   Updated: 2025/05/07 10:05:13 by obellil-         ###   ########.fr       */
+/*   Updated: 2025/05/07 12:53:24 by obellil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
@@ -86,7 +85,6 @@ char	*ft_stradd(char *str, char buff);
 char	*get_map(int fd);
 char	**map_core(char **str, t_data *data);
 // int		chk_map(char **argv);
-
 
 //checking
 int		check_wall(char *map_line, char col, t_data *data);

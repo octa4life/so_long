@@ -6,7 +6,7 @@
 /*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 09:35:13 by octavie           #+#    #+#             */
-/*   Updated: 2025/05/07 12:04:20 by obellil-         ###   ########.fr       */
+/*   Updated: 2025/05/07 12:52:28 by obellil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ char	*get_map(int fd)
 		}
 		return (buff);
 	}
+	free(buff);
 	print_error("Error : Wrong lecture map\n");
 	return (NULL);
 }
@@ -48,8 +49,7 @@ char	**parse_map(int fd, t_data *data)
 	i = 1;
 	line_map = get_map(fd);
 	if (!line_map)
-		return (free_map(data), NULL);
-	printf("[debug]1");
+		return (free(line_map), free_map(data), NULL);
 	data->map = ft_split(line_map, '\n');
 	free(line_map);
 	check_content(data);
@@ -61,14 +61,12 @@ char	**parse_map(int fd, t_data *data)
 	{
 		if (!(check_wall(data->map[i], data->content.wall, data)))
 			return (free_map(data));
-		else if (!(check_other(data->map[i], &(data->content))))
+		else if (!(check_other(data->map[i++], &(data->content))))
 			return (free_map(data));
-		i++;
 	}
 	data->height = i;
 	if (!data->height && !(check_line(data->map[i - 1], data->content.wall)))
 		return (free_map(data), NULL);
-	printf("[debug]2");
 	return (data->map);
 }
 
