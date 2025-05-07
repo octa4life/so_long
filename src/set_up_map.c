@@ -6,7 +6,7 @@
 /*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 09:35:13 by octavie           #+#    #+#             */
-/*   Updated: 2025/05/07 12:52:28 by obellil-         ###   ########.fr       */
+/*   Updated: 2025/05/07 15:39:51 by obellil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,12 @@ char	*get_map(int fd)
 		tmp_buff = buff;
 		while (char_count > 0)
 		{
+			if (line_map[0] == '\0' || line_map[0] == '\n' || line_map[0] == '\t')
+			{
+				free(line_map);
+				free(buff);
+				return(NULL);
+			}
 			buff = ft_strjoin(buff, line_map);
 			free(tmp_buff);
 			free(line_map);
@@ -40,6 +46,8 @@ char	*get_map(int fd)
 	print_error("Error : Wrong lecture map\n");
 	return (NULL);
 }
+// reads the entire map file line by line
+// and concatenates it into a single string.
 
 char	**parse_map(int fd, t_data *data)
 {
@@ -67,8 +75,12 @@ char	**parse_map(int fd, t_data *data)
 	data->height = i;
 	if (!data->height && !(check_line(data->map[i - 1], data->content.wall)))
 		return (free_map(data), NULL);
+	if (!check_reachability(data))
+		return (free_map(data), NULL);
 	return (data->map);
 }
+// splits the map string into lines, validates the map's structure
+// and contents, and sets the map dimensions.
 
 char	**map_core(char **str, t_data *data)
 {
@@ -94,3 +106,5 @@ char	**map_core(char **str, t_data *data)
 	}
 	return (data->map);
 }
+// checks the file extension, opens the map file, parses and validates the map,
+// and ensures required elements are present.

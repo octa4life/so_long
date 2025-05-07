@@ -6,7 +6,7 @@
 #    By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/05 14:07:11 by obellil-          #+#    #+#              #
-#    Updated: 2025/05/07 10:16:03 by obellil-         ###   ########.fr        #
+#    Updated: 2025/05/07 14:06:56 by obellil-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ MLX = $(MLX_DIR)/libmlx.a
 MLX_FLAGS = -L$(MLX_DIR) -lmlx -lX11 -lXext
 
 # Sources files
-_SRCS = set_up_map.c utils.c parsing_so_long.c main.c mouv.c other.c displays.c
+_SRCS = set_up_map.c utils.c parsing_so_long.c main.c mouv.c other.c displays.c floodfill.c
 SRCS = $(addprefix $(SRC_DIR)/, $(_SRCS))
 
 _OBJS = $(_SRCS:.c=.o)

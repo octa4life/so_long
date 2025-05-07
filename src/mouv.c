@@ -6,7 +6,7 @@
 /*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 09:53:02 by octavie           #+#    #+#             */
-/*   Updated: 2025/05/07 11:17:11 by obellil-         ###   ########.fr       */
+/*   Updated: 2025/05/07 13:53:54 by obellil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ void	mouv_top(t_data *data)
 		}
 	}
 }
+// moves the player up if the tile above is not a wall,
+// handles collectibles, and checks for a win at the exit.
 
 void	mouv_right(t_data *data)
 {
@@ -67,6 +69,8 @@ void	mouv_right(t_data *data)
 		}
 	}
 }
+// moves the player right if the tile to the right is not a wall,
+// handles collectibles, and checks for a win at the exit.
 
 void	mouv_left(t_data *data)
 {
@@ -95,6 +99,8 @@ void	mouv_left(t_data *data)
 		}
 	}
 }
+// moves the player left if the tile to the left is not a wall,
+//  handles collectibles, and checks for a win at the exit.
 
 void	mouv_down(t_data *data)
 {
@@ -123,3 +129,5 @@ void	mouv_down(t_data *data)
 		}
 	}
 }
+// moves the player down if the tile below is not a wall,
+// handles collectibles, and checks for a win at the exit.

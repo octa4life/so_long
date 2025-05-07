@@ -6,7 +6,7 @@
 /*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 10:22:36 by octavie           #+#    #+#             */
-/*   Updated: 2025/05/07 11:46:59 by obellil-         ###   ########.fr       */
+/*   Updated: 2025/05/07 15:36:24 by obellil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,13 @@ void	set_content(t_cnt *content)
 	content->count_e = 0;
 	content->count_c = 0;
 }
+// initializes the map symbols and related counters for player,
+// exit, wall, space, and collectible.
 
 void	set_img(t_data *data)
 {
-	data->img.height = 80;
-	data->img.width = 80;
+	data->img.height = 64;
+	data->img.width = 64;
 	data->img.floor = "./textures/floor.xpm";
 	data->img.wall = "./textures/wall.xpm";
 	data->img.collect = "./textures/chest.xpm";
@@ -44,6 +46,8 @@ void	set_img(t_data *data)
 	data->img.img_player = mlx_xpm_file_to_image(data->mlx_ptr,
 			data->img.player, &(data->img.width), &(data->img.height));
 }
+// sets the file paths and loads the images for all game textures
+// (wall, floor, player, collectible, exit).
 
 int	key_press(int keysym, t_data *data)
 {
@@ -59,6 +63,7 @@ int	key_press(int keysym, t_data *data)
 		mouv_down(data);
 	return (0);
 }
+// handles key inputs for player movement and quitting the game.
 
 int	get_collectible_count(t_data *data)
 {
@@ -82,6 +87,7 @@ int	get_collectible_count(t_data *data)
 	}
 	return (count);
 }
+//counts the number of remaining collectibles on the map.
 
 int	finish(t_data *data)
 {
@@ -107,3 +113,5 @@ int	finish(t_data *data)
 	free(data->mlx_ptr);
 	exit(0);
 }
+//  frees all allocated memory, destroys images and the window,
+// and safely exits the game.

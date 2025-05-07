@@ -6,7 +6,7 @@
 /*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 19:55:08 by obellil-          #+#    #+#             */
-/*   Updated: 2025/05/07 11:48:56 by obellil-         ###   ########.fr       */
+/*   Updated: 2025/05/07 13:58:04 by obellil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	*free_map(t_data *data)
 	data->map = NULL;
 	return (0);
 }
+// frees all allocated memory for the map and resets its pointer to NULL.
 
 char	*ft_stradd(char *str, char buff)
 {
@@ -48,6 +49,8 @@ char	*ft_stradd(char *str, char buff)
 	ret[++i] = '\0';
 	return (ret);
 }
+// creates a new string by appending a single character
+// to the end of an existing string.
 
 int	get_next_line(int fd, char **str)
 {
@@ -71,6 +74,8 @@ int	get_next_line(int fd, char **str)
 	}
 	return (ret);
 }
+// reads a line from a file descriptor one character at
+// a time until a newline or EOF is reached.
 
 int	only_ones(char *str)
 {

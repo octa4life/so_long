@@ -6,7 +6,7 @@
 /*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:42:47 by obellil-          #+#    #+#             */
-/*   Updated: 2025/05/07 12:53:24 by obellil-         ###   ########.fr       */
+/*   Updated: 2025/05/07 14:08:44 by obellil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,12 @@ void	mouv_left(t_data *data);
 void	mouv_right(t_data *data);
 void	mouv_top(t_data *data);
 void	print_img(t_data *data, void *img, int x, int y);
+
+//floodfill
+void	free_map_array(char **map);
+char	**dup_map(char **map);
+int		check_reachability(t_data *data);
+void	flood_fill(char **map, int x, int y);
 
 // other
 int		key_press(int keysym, t_data *data);

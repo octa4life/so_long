@@ -6,7 +6,7 @@
 /*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 09:15:24 by obellil-          #+#    #+#             */
-/*   Updated: 2025/05/07 11:42:08 by obellil-         ###   ########.fr       */
+/*   Updated: 2025/05/07 14:52:22 by obellil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	check_wall(char *map_line, char wall, t_data *data)
 	data->width = i;
 	return (1);
 }
+// checks if a map line starts and ends with a wall and sets the map width.
 
 int	check_line(char *map_line, char wall)
 {
@@ -44,6 +45,8 @@ int	check_line(char *map_line, char wall)
 	}
 	return (1);
 }
+
+// checks if an entire map line is composed only of wall characters.
 
 int	check_other(char *map_line, t_cnt *content)
 {
@@ -68,6 +71,8 @@ int	check_other(char *map_line, t_cnt *content)
 	}
 	return (1);
 }
+// verifies that only allowed characters are present
+// and ensures only one player and one exit exist.
 
 void	check_content(t_data *data)
 {
@@ -92,6 +97,8 @@ void	check_content(t_data *data)
 		i++;
 	}
 }
+// counts the number of players, exits,
+// and collectibles in the map and updates the content struct
 
 int	check_square(char **map)
 {
@@ -118,3 +125,5 @@ int	check_square(char **map)
 	}
 	return (1);
 }
+// ensures all lines in the map have the same length,
+// validating the map as rectangular or square.
