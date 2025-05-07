@@ -6,7 +6,7 @@
 /*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 14:04:57 by obellil-          #+#    #+#             */
-/*   Updated: 2025/05/07 15:19:16 by obellil-         ###   ########.fr       */
+/*   Updated: 2025/05/07 17:41:58 by obellil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 void	free_map_array(char **map)
 {
-	int i = 0;
+	int	i;
+
+	i = 0;
 	while (map && map[i])
 		free(map[i++]);
 	free(map);
@@ -56,11 +58,11 @@ int	check_reachability(t_data *data)
 		while (data->map[y][x])
 		{
 			if (data->map[y][x] == 'P')
-				break;
+				break ;
 			x++;
 		}
 		if (data->map[y][x] == 'P')
-			break;
+			break ;
 		y++;
 	}
 	map_copy = dup_map(data->map);
@@ -75,40 +77,30 @@ int	check_reachability(t_data *data)
 		{
 			if (map_copy[y][x] == 'C')
 			{
-				free_map_array(map_copy);
-				print_error("Error : Not all collectibles or exit reachable\n");
-				return (0);
+				print_error ("Error : Not all collectibles or exit reachable\n");
+				return (free_map_array(map_copy), 0);
 			}
 			x++;
 		}
 		y++;
 	}
-	free_map_array(map_copy);
-	return (1);
+	return (free_map_array(map_copy),1);
 }
 
 void	flood_fill(char **map, int x, int y)
 {
-	// Boundary check: ensure map[x] exists
 	if (!map[x] || map[x][y] == '\0')
-		return;
-
-	// If the current cell is a wall ('1'), an 'E' or 'X', stop
+		return ;
 	if (map[x][y] == 'E' || map[x][y] == 'X' || map[x][y] == '1')
-		return;
-
-	// Mark the current cell as visited by filling with 'X' (or any other marker)
+		return ;
 	if (map[x][y] == '0' || map[x][y] == 'C' || map[x][y] == 'P')
 		map[x][y] = 'X';
-
-	// Recursive calls in all four directions (up, down, left, right)
-	if (map[x + 1] && map[x + 1][y] != '\0') // Check down (x + 1)
+	if (map[x + 1] && map[x + 1][y] != '\0')
 		flood_fill(map, x + 1, y);
-	if (x > 0 && map[x - 1] && map[x - 1][y] != '\0') // Check up (x - 1)
+	if (x > 0 && map[x - 1] && map[x - 1][y] != '\0')
 		flood_fill(map, x - 1, y);
-	if (map[x] && map[x][y + 1] != '\0') // Check right (y + 1)
+	if (map[x] && map[x][y + 1] != '\0')
 		flood_fill(map, x, y + 1);
-	if (map[x] && y > 0 && map[x][y - 1] != '\0') // Check left (y - 1)
+	if (map[x] && y > 0 && map[x][y - 1] != '\0')
 		flood_fill(map, x, y - 1);
 }
-

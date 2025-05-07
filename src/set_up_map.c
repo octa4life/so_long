@@ -6,7 +6,7 @@
 /*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 09:35:13 by octavie           #+#    #+#             */
-/*   Updated: 2025/05/07 15:39:51 by obellil-         ###   ########.fr       */
+/*   Updated: 2025/05/07 17:26:50 by obellil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,37 +14,35 @@
 
 char	*get_map(int fd)
 {
-	char	*line_map;
+	char	*l_map;
 	char	*buff;
 	int		char_count;
 	char	*tmp_buff;
 
-	line_map = ft_strdup("");
+	l_map = ft_strdup("");
 	buff = ft_strdup("");
-	char_count = get_next_line(fd, &line_map);
+	char_count = get_next_line(fd, &l_map);
 	if (char_count > 0)
 	{
 		tmp_buff = buff;
 		while (char_count > 0)
 		{
-			if (line_map[0] == '\0' || line_map[0] == '\n' || line_map[0] == '\t')
+			if (l_map[0] == '\0' || l_map[0] == '\n' || l_map[0] == '\t')
 			{
-				free(line_map);
+				free(l_map);
 				free(buff);
 				return(NULL);
 			}
-			buff = ft_strjoin(buff, line_map);
+			buff = ft_strjoin(buff, l_map);
 			free(tmp_buff);
-			free(line_map);
-			line_map = ft_strdup("");
-			char_count = get_next_line(fd, &line_map);
+			free(l_map);
+			l_map = ft_strdup("");
+			char_count = get_next_line(fd, &l_map);
 			tmp_buff = buff;
 		}
 		return (buff);
 	}
-	free(buff);
-	print_error("Error : Wrong lecture map\n");
-	return (NULL);
+	return (free(buff), print_error("Error : Wrong lecture map\n"), NULL);
 }
 // reads the entire map file line by line
 // and concatenates it into a single string.
@@ -67,9 +65,8 @@ char	**parse_map(int fd, t_data *data)
 		return (free_map(data));
 	while (data->map[i] != NULL)
 	{
-		if (!(check_wall(data->map[i], data->content.wall, data)))
-			return (free_map(data));
-		else if (!(check_other(data->map[i++], &(data->content))))
+		if (!(check_wall(data->map[i], data->content.wall, data))
+			|| !(check_other(data->map[i++], &(data->content))))
 			return (free_map(data));
 	}
 	data->height = i;

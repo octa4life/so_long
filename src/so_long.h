@@ -6,7 +6,7 @@
 /*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:42:47 by obellil-          #+#    #+#             */
-/*   Updated: 2025/05/07 14:08:44 by obellil-         ###   ########.fr       */
+/*   Updated: 2025/05/07 16:53:48 by obellil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 # include <fcntl.h>
 # include "../libft/libft.h"
 # include "../minilibx-linux/mlx.h"
+
+# define ERROR "Error : Not all collectibles or exit reachable\n"
 
 typedef struct img_s
 {
