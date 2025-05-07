@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: octavie <octavie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:42:47 by obellil-          #+#    #+#             */
-/*   Updated: 2025/05/06 21:45:39 by octavie          ###   ########.fr       */
+/*   Updated: 2025/05/07 10:05:13 by obellil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,36 +75,44 @@ typedef struct data_s
 	int		count;
 }				t_data;
 
-void	*ft_error(char *str);
-int		ft_same_char(char *str);
+// utils
+void	*print_error(char *str);
+int		only_ones(char *str);
+void	*free_map(t_data *data);
+int		get_next_line(int fd, char **str);
+char	*ft_stradd(char *str, char buff);
 
-int		ft_same_char(char *str);
+//init
 char	*get_map(int fd);
 char	**map_core(char **str, t_data *data);
-int		chk_map(char **argv);
+// int		chk_map(char **argv);
 
-int		ft_check_col(char *map_line, char col, t_data *data);
-int		ft_check_line(char *map_line, char wall);
-int		ft_check_other(char *map_line, t_cnt *content);
-void	ft_check_content(t_data *data);
-int		ft_check_format(char **map);
-int		chk_collect(t_data *data);
 
+//checking
+int		check_wall(char *map_line, char col, t_data *data);
+int		check_line(char *map_line, char wall);
+int		check_other(char *map_line, t_cnt *content);
+void	check_content(t_data *data);
+int		check_square(char **map);
+int		get_collectible_count(t_data *data);
+
+// set
 void	set_img(t_data *data);
 void	set_content(t_cnt *content);
 
-void	core_render(t_data *data);
-int		render(t_data *data);
-void	render_other(t_data *data);
-void	render_background(t_data *data);
-void	render_down(t_data *data);
-void	render_left(t_data *data);
-void	render_right(t_data *data);
-void	render_top(t_data *data);
+//display & mouv
+void	core_display(t_data *data);
+int		display(t_data *data);
+void	display_other(t_data *data);
+void	display_background(t_data *data);
+void	mouv_down(t_data *data);
+void	mouv_left(t_data *data);
+void	mouv_right(t_data *data);
+void	mouv_top(t_data *data);
 void	print_img(t_data *data, void *img, int x, int y);
 
+// other
 int		key_press(int keysym, t_data *data);
-int		chk_collect(t_data *data);
-int		end(t_data *data);
+int		finish(t_data *data);
 
 #endif

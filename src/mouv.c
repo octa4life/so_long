@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   mouv.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: octavie <octavie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 09:53:02 by octavie           #+#    #+#             */
-/*   Updated: 2025/05/06 21:50:53 by octavie          ###   ########.fr       */
+/*   Updated: 2025/05/07 11:17:11 by obellil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	render_top(t_data *data)
+void	mouv_top(t_data *data)
 {
 	int		pos_x;
 	int		pos_y;
@@ -30,17 +30,17 @@ void	render_top(t_data *data)
 		}
 		else
 		{
-			if (chk_collect(data) == 0)
+			if (get_collectible_count(data) == 0)
 			{
-				printf("Felicitation vous avez gagne en : %d coup !\n",
+				printf("GG WL BRO  tu as win en : %d coup(s) !\n",
 					data->count);
-				end(data);
+				finish(data);
 			}
 		}
 	}
 }
 
-void	render_right(t_data *data)
+void	mouv_right(t_data *data)
 {
 	int		pos_x;
 	int		pos_y;
@@ -58,17 +58,17 @@ void	render_right(t_data *data)
 		}
 		else
 		{
-			if (chk_collect(data) == 0)
+			if (get_collectible_count(data) == 0)
 			{
-				printf("Felicitation vous avez gagne en : %d coup !\n",
+				printf("GG WL BRO  tu as win en : %d coup(s) !\n",
 					data->count);
-				end(data);
+				finish(data);
 			}
 		}
 	}
 }
 
-void	render_left(t_data *data)
+void	mouv_left(t_data *data)
 {
 	int		pos_x;
 	int		pos_y;
@@ -86,17 +86,17 @@ void	render_left(t_data *data)
 		}
 		else
 		{
-			if (chk_collect(data) == 0)
+			if (get_collectible_count(data) == 0)
 			{
-				printf("Felicitation vous avez gagne en : %d coup !\n",
+				printf("GG WL BRO  tu as win en : %d coup(s) !\n",
 					data->count);
-				end(data);
+				finish(data);
 			}
 		}
 	}
 }
 
-void	render_down(t_data *data)
+void	mouv_down(t_data *data)
 {
 	int		pos_x;
 	int		pos_y;
@@ -114,11 +114,11 @@ void	render_down(t_data *data)
 		}
 		else
 		{
-			if (chk_collect(data) == 0)
+			if (get_collectible_count(data) == 0)
 			{
-				printf("Felicitation vous avez gagne en : %d coup !\n",
+				printf("GG WL BRO  tu as win en : %d coup(s) !\n",
 					data->count);
-				end(data);
+				finish(data);
 			}
 		}
 	}

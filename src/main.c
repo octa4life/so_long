@@ -3,30 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: octavie <octavie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 10:14:56 by obellil-          #+#    #+#             */
-/*   Updated: 2025/05/06 21:49:10 by octavie          ###   ########.fr       */
+/*   Updated: 2025/05/07 10:13:39 by obellil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int main(int argc, char **argv)
+
+int	main(int argc, char **argv)
 {
-	t_data data;
+	t_data	data;
 
 	if (argc != 2)
 	{
-		print_error("Error: Need 1 .ber file\n");
+		print_error("Error : Need 1 .ber file\n");
 		return (0);
 	}
 	else
 	{
 		data.count = 0;
 		data.mlx_ptr = mlx_init();
-		check_content(&data); // Correction ici : passage de la structure complète
-		data.map = map_check(argv, &data);
+		set_content(&(data.content));
+		data.map = map_core(argv, &data);
 		if (data.map != NULL)
 		{
 			set_img(&data);
@@ -35,5 +36,5 @@ int main(int argc, char **argv)
 		else
 			finish(&data);
 	}
-	return (0); // Correction du code de retour
+	return (1);
 }

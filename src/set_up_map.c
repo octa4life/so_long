@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_up_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: octavie <octavie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 09:35:13 by octavie           #+#    #+#             */
-/*   Updated: 2025/05/06 21:44:34 by octavie          ###   ########.fr       */
+/*   Updated: 2025/05/07 12:04:20 by obellil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*get_map(int fd)
 
 	line_map = ft_strdup("");
 	buff = ft_strdup("");
-	char_count = gnl(fd, &line_map);
+	char_count = get_next_line(fd, &line_map);
 	if (char_count > 0)
 	{
 		tmp_buff = buff;
@@ -31,37 +31,44 @@ char	*get_map(int fd)
 			free(tmp_buff);
 			free(line_map);
 			line_map = ft_strdup("");
-			char_count = gnl(fd, &line_map);
+			char_count = get_next_line(fd, &line_map);
 			tmp_buff = buff;
 		}
 		return (buff);
 	}
-	ft_error("Error\nWrong lecture map\n");
+	print_error("Error : Wrong lecture map\n");
 	return (NULL);
 }
 
 char	**parse_map(int fd, t_data *data)
 {
 	int		i;
+	char	*line_map;
 
 	i = 1;
-	data->map = ft_split(get_map(fd), '\n');
-	ft_check_content(data);
-	if (!(ft_check_format(data->map)))
-		return (ft_free_map(data));
-	if (!(ft_check_line(data->map[0], data->content.wall)))
-		return (ft_free_map(data));
+	line_map = get_map(fd);
+	if (!line_map)
+		return (free_map(data), NULL);
+	printf("[debug]1");
+	data->map = ft_split(line_map, '\n');
+	free(line_map);
+	check_content(data);
+	if (!(check_square(data->map)))
+		return (free_map(data));
+	if (!(check_line(data->map[0], data->content.wall)))
+		return (free_map(data));
 	while (data->map[i] != NULL)
 	{
-		if (!(ft_check_col(data->map[i], data->content.wall, data)))
-			return (ft_free_map(data));
-		else if (!(ft_check_other(data->map[i], &(data->content))))
-			return (ft_free_map(data));
+		if (!(check_wall(data->map[i], data->content.wall, data)))
+			return (free_map(data));
+		else if (!(check_other(data->map[i], &(data->content))))
+			return (free_map(data));
 		i++;
 	}
 	data->height = i;
-	if (!(ft_check_line(data->map[i - 1], data->content.wall)))
-		return (ft_free_map(data));
+	if (!data->height && !(check_line(data->map[i - 1], data->content.wall)))
+		return (free_map(data), NULL);
+	printf("[debug]2");
 	return (data->map);
 }
 
@@ -72,20 +79,19 @@ char	**map_core(char **str, t_data *data)
 	fd = 0;
 	data->map = NULL;
 	if (ft_strchr(str[1], ".ber") == 0)
-		return (ft_error("Error\nNo correct format map founded\n"));
+		return (print_error("Error : Need 1 .ber file \n"));
 	else
 	{
 		fd = open(str[1], O_RDONLY);
 		if (fd > 0)
 			data->map = parse_map(fd, data);
 		else
-			return (ft_error("Error\nFailed to open file\n"));
+			return (print_error("Error :  Failed to open file\n"));
 		if ((data->content.count_c == 0 || data->content.count_e != 1
 				|| data->content.count_p != 1) && data->map != NULL)
 		{
-			ft_free_map(data);
-			return (ft_error(
-					"Error\nNeed 1 Player/Exit and at least 1 Object\n"));
+			free_map(data);
+			return (print_error("Error : Need 1 Player/Exit and 1 Object\n"));
 		}
 	}
 	return (data->map);

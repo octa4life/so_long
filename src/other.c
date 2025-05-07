@@ -3,25 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   other.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: octavie <octavie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 10:22:36 by octavie           #+#    #+#             */
-/*   Updated: 2025/05/06 21:52:00 by octavie          ###   ########.fr       */
+/*   Updated: 2025/05/07 11:46:59 by obellil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+void	set_content(t_cnt *content)
+{
+	content->exit = 'E';
+	content->player = 'P';
+	content->wall = '1';
+	content->space = '0';
+	content->collect = 'C';
+	content->count_p = 0;
+	content->count_e = 0;
+	content->count_c = 0;
+}
 
 void	set_img(t_data *data)
 {
 	data->img.height = 80;
 	data->img.width = 80;
-	data->img.floor = "./texture/floor.xpm";
-	data->img.wall = "./texture/wall.xpm";
-	data->img.collect = "./texture/chest.xpm";
-	data->img.player = "./texture/bats.xpm";
-	data->img.exit = "./texture/door.xpm";
+	data->img.floor = "./textures/floor.xpm";
+	data->img.wall = "./textures/wall.xpm";
+	data->img.collect = "./textures/chest.xpm";
+	data->img.player = "./textures/bats.xpm";
+	data->img.exit = "./textures/door.xpm";
 	data->img.img_wall = mlx_xpm_file_to_image(data->mlx_ptr, data->img.wall,
 			&(data->img.width), &(data->img.height));
 	data->img.img_floor = mlx_xpm_file_to_image(data->mlx_ptr, data->img.floor,
@@ -49,7 +60,7 @@ int	key_press(int keysym, t_data *data)
 	return (0);
 }
 
-int	chk_collect(t_data *data)
+int	get_collectible_count(t_data *data)
 {
 	int		i;
 	int		y;
@@ -72,7 +83,7 @@ int	chk_collect(t_data *data)
 	return (count);
 }
 
-int	end(t_data *data)
+int	finish(t_data *data)
 {
 	int		i;
 

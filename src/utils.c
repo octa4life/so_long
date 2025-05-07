@@ -3,20 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: octavie <octavie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 19:55:08 by obellil-          #+#    #+#             */
-/*   Updated: 2025/05/06 21:52:22 by octavie          ###   ########.fr       */
+/*   Updated: 2025/05/07 11:48:56 by obellil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	*ft_free_map(t_data *data)
+void	*free_map(t_data *data)
 {
 	int		i;
 
 	i = 0;
+	if (!data->map)
+		return (0);
 	while (data->map[i] != NULL)
 	{
 		free(data->map[i]);
@@ -70,7 +72,7 @@ int	get_next_line(int fd, char **str)
 	return (ret);
 }
 
-int	ft_same_char(char *str)
+int	only_ones(char *str)
 {
 	int		i;
 	char	buff;
@@ -87,8 +89,10 @@ int	ft_same_char(char *str)
 	}
 	return (1);
 }
+// Checks if the string contains only '1' characters (excluding '\n').
+// Returns 1 if true, 0 if not, -1 if input is NULL.
 
-void	*ft_error(char *str)
+void	*print_error(char *str)
 {
 	write(2, str, ft_strlen(str));
 	return (0);

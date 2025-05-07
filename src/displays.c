@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   displays.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: octavie <octavie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 09:52:05 by octavie           #+#    #+#             */
-/*   Updated: 2025/05/06 21:50:32 by octavie          ###   ########.fr       */
+/*   Updated: 2025/05/07 10:21:09 by obellil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-void	render_background(t_data *data)
+
+void	display_background(t_data *data)
 {
 	int		i;
 	int		y;
@@ -32,8 +33,9 @@ void	render_background(t_data *data)
 		y++;
 	}
 }
+//draws the wall and floor images on the window based on the map layout.
 
-void	render_other(t_data *data)
+void	display_other(t_data *data)
 {
 	int		i;
 	int		y;
@@ -60,15 +62,18 @@ void	render_other(t_data *data)
 		y++;
 	}
 }
+// renders the collectibles, player,
+// and exit images and updates the player's pixel position.
 
-int	render(t_data *data)
+int	display(t_data *data)
 {
-	render_background(data);
-	render_other(data);
+	display_background(data);
+	display_other(data);
 	return (0);
 }
+//calls the background and other display functions to draw the full map.
 
-void	core_render(t_data *data)
+void	core_display(t_data *data)
 {
 	data->mlx_win = mlx_new_window(data->mlx_ptr,
 			(data->width * data->img.width), (data->height * data->img.height),
@@ -78,15 +83,18 @@ void	core_render(t_data *data)
 		free(data->mlx_ptr);
 		return ;
 	}
-	mlx_loop_hook(data->mlx_ptr, &render, data);
+	mlx_loop_hook(data->mlx_ptr, &display, data);
 	mlx_hook(data->mlx_win, KeyRelease, KeyReleaseMask, &key_press, data);
-	mlx_hook(data->mlx_win, 17, 0, &end, data);
+	mlx_hook(data->mlx_win, 17, 0, &finish, data);
 	mlx_loop(data->mlx_ptr);
-	end(data);
+	finish(data);
 }
+//initializes the window and sets up
+// the rendering and event loop for the game.
 
 void	print_img(t_data *data, void *img, int x, int y)
 {
 	mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, img,
 		data->img.width * x, data->img.height * y);
 }
+//places an image at the specified tile coordinates on the game window.

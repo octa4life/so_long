@@ -6,7 +6,7 @@
 #    By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/05 14:07:11 by obellil-          #+#    #+#              #
-#    Updated: 2025/05/06 14:09:19 by obellil-         ###   ########.fr        #
+#    Updated: 2025/05/07 10:16:03 by obellil-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -81,7 +81,7 @@ fclean:	clean
 	@echo "$(GREEN)All files cleaned! 🧹​$(NC)"
 
 re:	fclean all
-	@echo "$(GREEN)>>> Cleaned and rebuilt everything for PIPEX ! 💯​ <<<$(DEF_COLOR)"
+	@echo "$(GREEN)>>> Cleaned and rebuilt everything for So_Long ! 💯​ <<<$(DEF_COLOR)"
 bonus: re
 
 test: all
