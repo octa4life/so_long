@@ -1,7 +1,5 @@
 ![image](https://github.com/user-attachments/assets/2ebd9ec2-f6e6-4d1c-ada4-83f12c62b642)
-Bien sûr ! Voici un exemple de texte de présentation pour ton dépôt GitHub, en anglais, qui décrit ton projet "so\_long" réalisé dans le cadre de 42, sans la partie bonus :
 
----
 
 ## 🕹️ so\_long
 
