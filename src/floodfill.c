@@ -6,7 +6,7 @@
 /*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 14:04:57 by obellil-          #+#    #+#             */
-/*   Updated: 2025/05/08 10:45:52 by obellil-         ###   ########.fr       */
+/*   Updated: 2025/05/08 11:00:57 by obellil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,18 +87,13 @@ int	check_reachability(t_data *data)
 
 void	flood_fill(char **map, int x, int y)
 {
-	if (!map[x] || map[x][y] == '\0')
+	if (y < 0 || x < 0 || !map[y] || map[y][x] == '\0')
 		return ;
-	if (map[x][y] == 'E' || map[x][y] == 'X' || map[x][y] == '1')
+	if (map[y][x] == 'E' || map[y][x] == 'X' || map[y][x] == '1')
 		return ;
-	if (map[x][y] == '0' || map[x][y] == 'C' || map[x][y] == 'P')
-		map[x][y] = 'X';
-	if (map[x + 1] && map[x + 1][y] != '\0')
-		flood_fill(map, x + 1, y);
-	if (x > 0 && map[x - 1] && map[x - 1][y] != '\0')
-		flood_fill(map, x - 1, y);
-	if (map[x] && map[x][y + 1] != '\0')
-		flood_fill(map, x, y + 1);
-	if (map[x] && y > 0 && map[x][y - 1] != '\0')
-		flood_fill(map, x, y - 1);
+	map[y][x] = 'X';
+	flood_fill(map, x + 1, y);
+	flood_fill(map, x - 1, y);
+	flood_fill(map, x, y + 1);
+	flood_fill(map, x, y - 1);
 }
