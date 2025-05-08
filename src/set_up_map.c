@@ -6,7 +6,7 @@
 /*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 09:35:13 by octavie           #+#    #+#             */
-/*   Updated: 2025/05/07 17:26:50 by obellil-         ###   ########.fr       */
+/*   Updated: 2025/05/08 09:51:42 by obellil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,7 @@ char	*get_map(int fd)
 		while (char_count > 0)
 		{
 			if (l_map[0] == '\0' || l_map[0] == '\n' || l_map[0] == '\t')
-			{
-				free(l_map);
-				free(buff);
-				return(NULL);
-			}
+				return (print_error(ERROR_LINE), free(l_map), free(buff), NULL);
 			buff = ft_strjoin(buff, l_map);
 			free(tmp_buff);
 			free(l_map);
@@ -59,9 +55,8 @@ char	**parse_map(int fd, t_data *data)
 	data->map = ft_split(line_map, '\n');
 	free(line_map);
 	check_content(data);
-	if (!(check_square(data->map)))
-		return (free_map(data));
-	if (!(check_line(data->map[0], data->content.wall)))
+	if (!(check_square(data->map))
+		||!(check_line(data->map[0], data->content.wall)))
 		return (free_map(data));
 	while (data->map[i] != NULL)
 	{

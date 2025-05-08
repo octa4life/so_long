@@ -6,7 +6,7 @@
 /*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:42:47 by obellil-          #+#    #+#             */
-/*   Updated: 2025/05/07 16:53:48 by obellil-         ###   ########.fr       */
+/*   Updated: 2025/05/08 10:45:35 by obellil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@
 # include "../libft/libft.h"
 # include "../minilibx-linux/mlx.h"
 
-# define ERROR "Error : Not all collectibles or exit reachable\n"
+# define ERROR_C_E "Error : Not all collectibles or exit reachable\n"
+# define ERROR_LINE "Error : Empty line in your map \n"
 
 typedef struct img_s
 {
@@ -86,7 +87,6 @@ char	*ft_stradd(char *str, char buff);
 //init
 char	*get_map(int fd);
 char	**map_core(char **str, t_data *data);
-// int		chk_map(char **argv);
 
 //checking
 int		check_wall(char *map_line, char col, t_data *data);
@@ -116,6 +116,7 @@ void	free_map_array(char **map);
 char	**dup_map(char **map);
 int		check_reachability(t_data *data);
 void	flood_fill(char **map, int x, int y);
+int		find_player_pos(char **map, int *x, int *y);
 
 // other
 int		key_press(int keysym, t_data *data);

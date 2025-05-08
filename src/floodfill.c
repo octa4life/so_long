@@ -6,7 +6,7 @@
 /*   By: obellil- <obellil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 14:04:57 by obellil-          #+#    #+#             */
-/*   Updated: 2025/05/07 17:41:58 by obellil-         ###   ########.fr       */
+/*   Updated: 2025/05/08 10:45:52 by obellil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,46 +45,44 @@ char	**dup_map(char **map)
 	return (new_map);
 }
 
+int	find_player_pos(char **map, int *x, int *y)
+{
+	*y = 0;
+	while (map[*y])
+	{
+		*x = 0;
+		while (map[*y][*x])
+		{
+			if (map[*y][*x] == 'P')
+				return (1);
+			(*x)++;
+		}
+		(*y)++;
+	}
+	return (0);
+}
+
 int	check_reachability(t_data *data)
 {
-	char	**map_copy;
 	int		x;
 	int		y;
+	char	**map_copy;
 
-	y = 0;
-	while (data->map[y])
-	{
-		x = 0;
-		while (data->map[y][x])
-		{
-			if (data->map[y][x] == 'P')
-				break ;
-			x++;
-		}
-		if (data->map[y][x] == 'P')
-			break ;
-		y++;
-	}
+	if (!find_player_pos(data->map, &x, &y))
+		return (print_error("Error : Player not found\n"), 0);
 	map_copy = dup_map(data->map);
 	if (!map_copy)
 		return (print_error("Error : Map duplication failed\n"), 0);
 	flood_fill(map_copy, x, y);
-	y = 0;
-	while (map_copy[y])
+	y = -1;
+	while (map_copy[++y])
 	{
-		x = 0;
-		while (map_copy[y][x])
-		{
+		x = -1;
+		while (map_copy[y][++x])
 			if (map_copy[y][x] == 'C')
-			{
-				print_error ("Error : Not all collectibles or exit reachable\n");
-				return (free_map_array(map_copy), 0);
-			}
-			x++;
-		}
-		y++;
+				return (print_error(ERROR_C_E), free_map_array(map_copy), 0);
 	}
-	return (free_map_array(map_copy),1);
+	return (free_map_array(map_copy), 1);
 }
 
 void	flood_fill(char **map, int x, int y)
